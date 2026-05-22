@@ -172,8 +172,8 @@ nav.light-nav{/* for cream pages */}
 .photo-strip{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
 .photo-strip::-webkit-scrollbar{display:none}
 .strip-item{flex-shrink:0;width:300px;height:400px;overflow:hidden;scroll-snap-align:start;position:relative}
-.strip-item .scene{transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.strip-item:hover .scene{transform:scale(1.04)}
+.strip-item img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.strip-item:hover img{transform:scale(1.04)}
 .strip-caption{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(26,22,18,.85));font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-pale);z-index:2}
 
 /* Intro */
@@ -201,8 +201,8 @@ nav.light-nav{/* for cream pages */}
 .props-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:80px}
 .prop-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4}
 .prop-card:first-child{grid-row:span 2;aspect-ratio:auto}
-.prop-card .scene{transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
-.prop-card:hover .scene{transform:scale(1.04);filter:brightness(.8)}
+.prop-card img{transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
+.prop-card:hover img{transform:scale(1.04);filter:brightness(.72)}
 .prop-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(26,22,18,.95) 0%,rgba(26,22,18,.3) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
 .prop-type{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light);margin-bottom:8px}
 .prop-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:6px}
@@ -221,8 +221,8 @@ nav.light-nav{/* for cream pages */}
 .interiors-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;font-style:italic;color:rgba(250,250,247,.55);max-width:280px;text-align:right;line-height:1.6}
 .mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:300px 300px;gap:3px}
 .mosaic-item{overflow:hidden;position:relative}
-.mosaic-item .scene{transition:transform .9s cubic-bezier(.16,1,.3,1)}
-.mosaic-item:hover .scene{transform:scale(1.04)}
+.mosaic-item img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.mosaic-item:hover img{transform:scale(1.04)}
 .mosaic-tall{grid-row:span 2}
 .mosaic-label{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(26,22,18,.82));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.7);z-index:2}
 
@@ -234,7 +234,8 @@ nav.light-nav{/* for cream pages */}
 /* Featured hero */
 #featured{padding:0;position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
 .featured-bg{position:absolute;inset:0}
-.featured-bg::after{content:'';position:absolute;inset:0;background:rgba(26,22,18,.52)}
+.featured-bg img{filter:brightness(.42)}
+.featured-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(26,22,18,.6),rgba(26,22,18,.2))}
 .featured-content{position:relative;z-index:2;padding:0 48px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .featured-label-top{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-light);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .featured-label-top::before{content:'';width:24px;height:1px;background:var(--terra)}
@@ -262,8 +263,8 @@ nav.light-nav{/* for cream pages */}
 .cta-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;text-transform:uppercase;line-height:.95;color:var(--ink)}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
 .cta-card{position:relative;overflow:hidden;height:520px;text-decoration:none;color:var(--white);display:block;cursor:pointer}
-.cta-card .scene{transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.cta-card:hover .scene{transform:scale(1.03)}
+.cta-card img{transition:transform .8s cubic-bezier(.16,1,.3,1);filter:brightness(.6)}
+.cta-card:hover img{transform:scale(1.03);filter:brightness(.48)}
 .cta-card-inner{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;background:linear-gradient(transparent 20%,rgba(26,22,18,.92))}
 .cta-card-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-light);margin-bottom:10px}
 .cta-card-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;text-transform:uppercase;line-height:.95;margin-bottom:20px}
@@ -659,22 +660,10 @@ nav.light-nav{/* for cream pages */}
 <div class="page active" id="page-home">
   <section id="hero">
     <div class="hero-slides">
-      <div class="hero-slide active">
-        <div class="scene" style="background:linear-gradient(165deg,#4a1e08 0%,#8b3a14 15%,#c4622d 32%,#e8924a 48%,#c46828 62%,#6b2f10 80%,#1a1008 100%)">
-          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
-      </div>
-      <div class="hero-slide">
-        <div class="scene" style="background:linear-gradient(165deg,#0a1828 0%,#0e2a44 20%,#164060 38%,#1e5878 52%,#124060 70%,#0a1828 100%)">
-          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-coast"/></svg><div class="scene-noise"></div></div>
-      </div>
-      <div class="hero-slide">
-        <div class="scene" style="background:linear-gradient(165deg,#0e1520 0%,#1a2535 20%,#243548 38%,#344858 55%,#1e2e40 75%,#0e1520 100%)">
-          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
-      </div>
-      <div class="hero-slide">
-        <div class="scene" style="background:linear-gradient(165deg,#1a0e06 0%,#2e1a0a 20%,#4a2a10 38%,#6a3a18 52%,#3a2010 72%,#1a0e06 100%)">
-          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-interior"/></svg><div class="scene-noise"></div></div>
-      </div>
+      <div class="hero-slide active"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
     </div>
     <div class="hero-content">
       <div>
@@ -715,13 +704,13 @@ nav.light-nav{/* for cream pages */}
     <div class="marquee-item">Architectural Icons<span class="marquee-dot"></span></div>
   </div></div>
   <div class="strip-wrap"><div class="photo-strip">
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#2a1808,#5a3010 40%,#8a5028 70%,#3a2010)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Chef's Kitchen</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1a1008,#3a2010 40%,#5a3818 70%,#2a1a0a)"><svg class="scene-art" style="opacity:.32" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Grand Living Room</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1520,#182535 40%,#243848 70%,#0e1520)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Master Suite</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#061828,#0e2a40 40%,#184860 70%,#081828)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Infinity Pool</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" style="opacity:.4" viewBox="0 0 600 800"><use href="#art-desert"/></svg></div><div class="strip-caption">Desert Facade</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1e0e06,#3a1a0c 40%,#603020 70%,#2a1208)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Dining Pavilion</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1820,#162838 40%,#204050 70%,#0e1820)"><svg class="scene-art" style="opacity:.32" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Spa Bath</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Chef's Kitchen</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Grand Living Room</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Master Suite</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Infinity Pool</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Desert Facade</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Dining Pavilion</div></div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Spa Bath</div></div></div>
   </div></div>
   <section id="intro">
     <div class="intro-grid">
@@ -733,8 +722,7 @@ nav.light-nav{/* for cream pages */}
         <button class="btn reveal" style="transition-delay:.3s" onclick="navigate('page-properties')">Explore Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
       <div class="intro-visual reveal-right">
-        <div class="scene" style="position:absolute;inset:0;background:linear-gradient(155deg,#5a2810 0%,#8b3a18 20%,#b85530 38%,#d4784a 54%,#9a4820 72%,#3a1a08 100%)">
-          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
+        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy">
         <div class="intro-img-label">House Type A — Desert Series</div>
       </div>
     </div>
@@ -772,11 +760,11 @@ nav.light-nav{/* for cream pages */}
       <p class="interiors-sub reveal-right">Every room a statement. Every surface chosen with intention.</p>
     </div>
     <div class="mosaic reveal">
-      <div class="mosaic-item mosaic-tall"><div class="scene" style="background:linear-gradient(160deg,#2a1808,#5a3010 30%,#8a5028 55%,#6a3a18 80%,#2a1808)"><svg class="scene-art" viewBox="0 0 800 600"><use href="#art-interior"/></svg></div><div class="mosaic-label">Open-Plan Kitchen · Solano Residence</div></div>
-      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#1a0e06,#3a1e0c 40%,#5a3018 70%,#2a1808)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-interior"/></svg></div><div class="mosaic-label">Great Room · Peak House</div></div>
-      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#0a1825,#102535 40%,#1a3850 70%,#0a1825)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-coast"/></svg></div><div class="mosaic-label">Stone Bath · Casa Quieta</div></div>
-      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#180e06,#2e1a0a 40%,#4e2e14 70%,#201006)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-interior"/></svg></div><div class="mosaic-label">Wine Cellar · Mare Blu</div></div>
-      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-desert"/></svg></div><div class="mosaic-label">Desert Terrace · The Meridian</div></div>
+      <div class="mosaic-item mosaic-tall"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Open-Plan Kitchen · Solano Residence</div></div></div>
+      <div class="mosaic-item"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Great Room · Peak House</div></div></div>
+      <div class="mosaic-item"><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Stone Bath · Casa Quieta</div></div></div>
+      <div class="mosaic-item"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Wine Cellar · Mare Blu</div></div></div>
+      <div class="mosaic-item"><img src="https://images.pexels.com/photos/259950/pexels-photo-259950.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Desert Terrace · The Meridian</div></div></div>
     </div>
   </section>
 </div>
@@ -786,10 +774,7 @@ nav.light-nav{/* for cream pages */}
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-featured">
   <section id="featured">
-    <div class="featured-bg">
-      <div class="scene" style="background:linear-gradient(155deg,#5a2810 0%,#8b3a18 18%,#b85530 34%,#d47840 48%,#9a4820 68%,#3a1a08 100%)">
-        <svg class="scene-art" style="opacity:.38" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
-    </div>
+    <div class="featured-bg"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=900" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
     <div class="featured-content">
       <div class="reveal-left">
         <div class="featured-label-top">Property of the Month</div>
@@ -821,15 +806,15 @@ nav.light-nav{/* for cream pages */}
     </div>
     <div class="cta-grid">
       <a class="cta-card reveal" style="transition-delay:0s" onclick="filterProps('desert',document.querySelector('.filter-btn'));navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4601e 50%,#9a4818 75%,#3a1808)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-desert"/></svg></div>
+<img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=520" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" >
         <div class="cta-card-inner"><div class="cta-card-label">Collection 01</div><div class="cta-card-title">Desert<br>Estates</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
       <a class="cta-card reveal" style="transition-delay:.1s" onclick="filterProps('mountain',document.querySelectorAll('.filter-btn')[2]);navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-mountain"/></svg></div>
+<img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=520" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" >
         <div class="cta-card-inner"><div class="cta-card-label">Collection 02</div><div class="cta-card-title">Mountain<br>Retreats</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
       <a class="cta-card reveal" style="transition-delay:.2s" onclick="filterProps('coastal',document.querySelectorAll('.filter-btn')[3]);navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-coast"/></svg></div>
+<img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=520" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" >
         <div class="cta-card-inner"><div class="cta-card-label">Collection 03</div><div class="cta-card-title">Coastal<br>Villas</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
     </div>
@@ -855,8 +840,7 @@ nav.light-nav{/* for cream pages */}
       <div class="process-step reveal" style="transition-delay:.3s"><div class="step-num">04</div><div class="step-title">Seamless Closing</div><p class="step-desc">Our legal and financial partners handle every detail, ensuring a smooth, discreet transaction from offer to keys.</p></div>
     </div>
     <div class="process-divider reveal">
-      <div class="scene" style="background:linear-gradient(160deg,#0e1520 0%,#1a2535 25%,#2e4258 50%,#1e3045 75%,#0e1520 100%);position:absolute;inset:0">
-        <svg class="scene-art" style="opacity:.38" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
+<img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" >
       <div class="process-divider-text">
         "Architecture is the art of how to waste space purposefully — we ensure not a single square foot goes unfelt."
         <cite>— STRATA Design Philosophy</cite>
@@ -870,7 +854,7 @@ nav.light-nav{/* for cream pages */}
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
   <div class="contact-bg">
-    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.12" viewBox="0 0 800 600"><use href="#art-desert"/></svg>
+
     <div class="contact-bg-text">STRATA</div>
   </div>
   <div id="contact-section">
@@ -990,10 +974,8 @@ nav.light-nav{/* for cream pages */}
 // ═══════════════════════════════════════════════
 // SCENE HELPER
 // ═══════════════════════════════════════════════
-function makeScene(gradient,artId,opacity){
-  return `<div class="scene" style="background:${gradient};position:absolute;inset:0">
-    <svg class="scene-art" style="opacity:${opacity||.38}" viewBox="0 0 800 500"><use href="#${artId}"/></svg>
-    <div class="scene-noise"></div></div>`;
+function makeScene(imgUrl){
+  return `<img src="${imgUrl}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy">`;
 }
 
 // ═══════════════════════════════════════════════
@@ -1110,14 +1092,9 @@ setInterval(()=>goSlide((curSlide+1)%slides.length),5000);
 // PROPERTY DATA
 // ═══════════════════════════════════════════════
 const D={
-  d1:['linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4621e 50%,#9a4818 75%,#3a1808)','art-desert'],
-  c1:['linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)','art-coast'],
-  m1:['linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)','art-mountain'],
-  d2:['linear-gradient(155deg,#3a1808,#6a3010 25%,#a04820 50%,#7a3818 75%,#2a1206)','art-desert'],
-  m2:['linear-gradient(155deg,#121820,#1e2c40 25%,#2a3e58 50%,#1e2c40 75%,#121820)','art-mountain'],
-  c2:['linear-gradient(155deg,#061422,#0e2438 25%,#1a3e58 50%,#103048 75%,#061422)','art-coast'],
-  i1:['linear-gradient(155deg,#1a0e06,#3a1c0c 35%,#5a3018 65%,#2a1408)','art-interior'],
-  i2:['linear-gradient(155deg,#100c06,#281808 35%,#402a10 65%,#201006)','art-interior'],
+  d1:'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600', c1:'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600', m1:'https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600',
+  d2:'https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600', m2:'https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600', c2:'https://images.pexels.com/photos/462024/pexels-photo-462024.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600',
+  i1:'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600', i2:'https://images.pexels.com/photos/259950/pexels-photo-259950.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600',
 };
 const properties=[
   {id:1,type:'Desert Estate',  name:'Solano Residence',location:'Scottsdale, AZ', price:'$8.4M', beds:5,baths:6,sqft:'9,200', cat:'desert',  scenes:[D.d1,D.i1,D.i2],desc:'A masterclass in desert modernism. Whitewashed walls cut against amber stone cliffs. Four pavilions connected by glass corridors, each framing a different desert view.'},
@@ -1137,7 +1114,7 @@ function renderProps(){
   const list=activeFilter==='all'?properties:properties.filter(p=>p.cat===activeFilter);
   grid.innerHTML=list.map((p,i)=>`
     <div class="prop-card reveal" style="transition-delay:${i*.08}s" onclick="openModal(${p.id})">
-      ${makeScene(p.scenes[0][0],p.scenes[0][1],.42)}
+      ${makeScene(p.scenes[0])}
       <div class="prop-overlay">
         <div class="prop-type">${p.type}</div>
         <div class="prop-name">${p.name}</div>
@@ -1175,7 +1152,7 @@ function openModal(id){
   const names=['Exterior','Living','Suite'];
   document.getElementById('modal-thumbs').innerHTML=p.scenes.map((sc,i)=>`
     <div class="modal-thumb${i===0?' active':''}" onclick="switchModalScene(${id},${i})" style="position:relative">
-      ${makeScene(sc[0],sc[1],.22)}
+      ${makeScene(sc)}
       <div style="position:absolute;bottom:3px;left:4px;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(250,250,247,.7);z-index:2">${names[i]}</div>
     </div>`).join('');
   document.getElementById('prop-modal').classList.add('open');
@@ -1183,7 +1160,7 @@ function openModal(id){
 function renderModalScene(p,idx){
   const m=document.getElementById('modal-main-scene');
   m.style.cssText='position:relative;height:100%';
-  m.innerHTML=makeScene(p.scenes[idx][0],p.scenes[idx][1],.42);
+  m.innerHTML=makeScene(p.scenes[idx]);
 }
 function switchModalScene(propId,idx){
   const p=properties.find(x=>x.id===propId);
