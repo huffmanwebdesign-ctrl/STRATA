@@ -25,7 +25,7 @@ body{background:var(--ink);color:var(--white);font-family:'Barlow',sans-serif;ov
 .sc-coast{background:linear-gradient(160deg,#0a2a4a 0%,#1a4a6a 25%,#2a6a8a 45%,#1a4a5a 65%,#0a2030 100%)}
 .sc-mountain{background:linear-gradient(160deg,#1a2030 0%,#2a3550 25%,#3a4a60 45%,#505f70 60%,#2a3040 80%,#100f0e 100%)}
 .sc-interior{background:linear-gradient(160deg,#2a1a0a 0%,#4a2a10 20%,#7a4a20 40%,#9a6a30 55%,#3a2010 80%,#1a100a 100%)}
-.scene-art{position:absolute;inset:0;opacity:.18;pointer-events:none}
+.scene-art{position:absolute;inset:0;opacity:.32;pointer-events:none}
 .scene-art svg{width:100%;height:100%}
 .scene-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
@@ -525,7 +525,7 @@ nav.light-nav{/* for cream pages */}
 <body>
 
 <!-- ── SVG DEFS ─────────────────────────────────────────────────────────────── -->
-<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<svg style="position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none" xmlns="http://www.w3.org/2000/svg">
 <defs>
   <symbol id="art-desert" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
     <polygon points="0,500 180,220 260,320 340,180 440,280 520,160 600,240 680,140 800,200 800,500" fill="rgba(100,40,10,.35)"/>
@@ -715,13 +715,13 @@ nav.light-nav{/* for cream pages */}
     <div class="marquee-item">Architectural Icons<span class="marquee-dot"></span></div>
   </div></div>
   <div class="strip-wrap"><div class="photo-strip">
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#2a1808,#5a3010 40%,#8a5028 70%,#3a2010)"><svg class="scene-art" style="opacity:.25" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Chef's Kitchen</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1a1008,#3a2010 40%,#5a3818 70%,#2a1a0a)"><svg class="scene-art" style="opacity:.2" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Grand Living Room</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1520,#182535 40%,#243848 70%,#0e1520)"><svg class="scene-art" style="opacity:.25" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Master Suite</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#061828,#0e2a40 40%,#184860 70%,#081828)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Infinity Pool</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" style="opacity:.28" viewBox="0 0 600 800"><use href="#art-desert"/></svg></div><div class="strip-caption">Desert Facade</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1e0e06,#3a1a0c 40%,#603020 70%,#2a1208)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Dining Pavilion</div></div>
-    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1820,#162838 40%,#204050 70%,#0e1820)"><svg class="scene-art" style="opacity:.2" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Spa Bath</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#2a1808,#5a3010 40%,#8a5028 70%,#3a2010)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Chef's Kitchen</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1a1008,#3a2010 40%,#5a3818 70%,#2a1a0a)"><svg class="scene-art" style="opacity:.32" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Grand Living Room</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1520,#182535 40%,#243848 70%,#0e1520)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Master Suite</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#061828,#0e2a40 40%,#184860 70%,#081828)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Infinity Pool</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" style="opacity:.4" viewBox="0 0 600 800"><use href="#art-desert"/></svg></div><div class="strip-caption">Desert Facade</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1e0e06,#3a1a0c 40%,#603020 70%,#2a1208)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Dining Pavilion</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1820,#162838 40%,#204050 70%,#0e1820)"><svg class="scene-art" style="opacity:.32" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Spa Bath</div></div>
   </div></div>
   <section id="intro">
     <div class="intro-grid">
@@ -788,7 +788,7 @@ nav.light-nav{/* for cream pages */}
   <section id="featured">
     <div class="featured-bg">
       <div class="scene" style="background:linear-gradient(155deg,#5a2810 0%,#8b3a18 18%,#b85530 34%,#d47840 48%,#9a4820 68%,#3a1a08 100%)">
-        <svg class="scene-art" style="opacity:.22" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
+        <svg class="scene-art" style="opacity:.38" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
     </div>
     <div class="featured-content">
       <div class="reveal-left">
@@ -821,15 +821,15 @@ nav.light-nav{/* for cream pages */}
     </div>
     <div class="cta-grid">
       <a class="cta-card reveal" style="transition-delay:0s" onclick="filterProps('desert',document.querySelector('.filter-btn'));navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4601e 50%,#9a4818 75%,#3a1808)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-desert"/></svg></div>
+        <div class="scene" style="background:linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4601e 50%,#9a4818 75%,#3a1808)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-desert"/></svg></div>
         <div class="cta-card-inner"><div class="cta-card-label">Collection 01</div><div class="cta-card-title">Desert<br>Estates</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
       <a class="cta-card reveal" style="transition-delay:.1s" onclick="filterProps('mountain',document.querySelectorAll('.filter-btn')[2]);navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-mountain"/></svg></div>
+        <div class="scene" style="background:linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-mountain"/></svg></div>
         <div class="cta-card-inner"><div class="cta-card-label">Collection 02</div><div class="cta-card-title">Mountain<br>Retreats</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
       <a class="cta-card reveal" style="transition-delay:.2s" onclick="filterProps('coastal',document.querySelectorAll('.filter-btn')[3]);navigate('page-properties')">
-        <div class="scene" style="background:linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-coast"/></svg></div>
+        <div class="scene" style="background:linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)"><svg class="scene-art" style="opacity:.38" viewBox="0 0 700 520"><use href="#art-coast"/></svg></div>
         <div class="cta-card-inner"><div class="cta-card-label">Collection 03</div><div class="cta-card-title">Coastal<br>Villas</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
       </a>
     </div>
@@ -856,7 +856,7 @@ nav.light-nav{/* for cream pages */}
     </div>
     <div class="process-divider reveal">
       <div class="scene" style="background:linear-gradient(160deg,#0e1520 0%,#1a2535 25%,#2e4258 50%,#1e3045 75%,#0e1520 100%);position:absolute;inset:0">
-        <svg class="scene-art" style="opacity:.25" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
+        <svg class="scene-art" style="opacity:.38" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
       <div class="process-divider-text">
         "Architecture is the art of how to waste space purposefully — we ensure not a single square foot goes unfelt."
         <cite>— STRATA Design Philosophy</cite>
@@ -992,7 +992,7 @@ nav.light-nav{/* for cream pages */}
 // ═══════════════════════════════════════════════
 function makeScene(gradient,artId,opacity){
   return `<div class="scene" style="background:${gradient};position:absolute;inset:0">
-    <svg class="scene-art" style="opacity:${opacity||.22}" viewBox="0 0 800 500"><use href="#${artId}"/></svg>
+    <svg class="scene-art" style="opacity:${opacity||.38}" viewBox="0 0 800 500"><use href="#${artId}"/></svg>
     <div class="scene-noise"></div></div>`;
 }
 
@@ -1137,7 +1137,7 @@ function renderProps(){
   const list=activeFilter==='all'?properties:properties.filter(p=>p.cat===activeFilter);
   grid.innerHTML=list.map((p,i)=>`
     <div class="prop-card reveal" style="transition-delay:${i*.08}s" onclick="openModal(${p.id})">
-      ${makeScene(p.scenes[0][0],p.scenes[0][1],.25)}
+      ${makeScene(p.scenes[0][0],p.scenes[0][1],.42)}
       <div class="prop-overlay">
         <div class="prop-type">${p.type}</div>
         <div class="prop-name">${p.name}</div>
@@ -1183,7 +1183,7 @@ function openModal(id){
 function renderModalScene(p,idx){
   const m=document.getElementById('modal-main-scene');
   m.style.cssText='position:relative;height:100%';
-  m.innerHTML=makeScene(p.scenes[idx][0],p.scenes[idx][1],.25);
+  m.innerHTML=makeScene(p.scenes[idx][0],p.scenes[idx][1],.42);
 }
 function switchModalScene(propId,idx){
   const p=properties.find(x=>x.id===propId);
