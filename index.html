@@ -7,270 +7,602 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --terra:#C4622D;--terra-light:#E8824A;--terra-pale:#F5D5C0;
-    --sand:#E8DDD0;--cream:#F5F0E8;--ink:#1A1612;--ink-soft:#2C2620;
-    --warm-gray:#8B7E72;--gold:#C9A84C;--white:#FAFAF7;
-  }
-  html{scroll-behavior:smooth;overflow-x:hidden}
-  body{background:var(--ink);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden}
-  img{display:block;width:100%;height:100%;object-fit:cover}
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;transition:background .4s,padding .4s}
-  nav.scrolled{background:rgba(26,22,18,.92);backdrop-filter:blur(20px);padding:16px 48px;border-bottom:1px solid rgba(196,98,45,.15)}
-  .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-  .nav-wordmark{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:.2em;color:var(--white);text-transform:uppercase}
-  .nav-links{display:flex;gap:36px;list-style:none}
-  .nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.65);text-decoration:none;transition:color .3s}
-  .nav-links a:hover{color:var(--white)}
-  .nav-cta{background:var(--white);color:var(--ink);padding:10px 24px;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;text-decoration:none;transition:background .3s,color .3s;display:flex;align-items:center;gap:8px}
-  .nav-cta:hover{background:var(--terra);color:var(--white)}
-  .nav-cta svg{width:14px;height:14px}
-  /* HERO */
-  #hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
-  .hero-slides{position:absolute;inset:0}
-  .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;background-size:cover;background-position:center center;background-repeat:no-repeat}
-  .hero-slide.active{opacity:1}
-  .hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,22,18,.2) 0%,rgba(26,22,18,.05) 40%,rgba(26,22,18,.78) 100%)}
-  .hero-content{position:relative;z-index:2;padding:0 48px 80px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
-  .hero-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(72px,9vw,140px);font-weight:900;line-height:.92;letter-spacing:-.01em;text-transform:uppercase;overflow:hidden}
-  .hero-headline .line{display:block;transform:translateY(120%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
-  #hero.loaded .hero-headline .line:nth-child(1){transform:translateY(0);transition-delay:.2s}
-  #hero.loaded .hero-headline .line:nth-child(2){transform:translateY(0);transition-delay:.35s}
-  #hero.loaded .hero-headline .line:nth-child(3){transform:translateY(0);transition-delay:.5s}
-  .hero-right{display:flex;flex-direction:column;gap:24px;align-items:flex-end}
-  .hero-tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light);opacity:0;transition:opacity .8s ease .8s}
-  #hero.loaded .hero-tag{opacity:1}
-  .hero-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;color:rgba(250,250,247,.8);line-height:1.6;max-width:280px;text-align:right;opacity:0;transform:translateY(20px);transition:opacity .8s ease 1s,transform .8s ease 1s}
-  #hero.loaded .hero-sub{opacity:1;transform:translateY(0)}
-  .hero-scroll{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.5);opacity:0;transition:opacity .8s ease 1.2s}
-  #hero.loaded .hero-scroll{opacity:1}
-  .scroll-line{width:40px;height:1px;background:rgba(250,250,247,.3);position:relative;overflow:hidden}
-  .scroll-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--terra-light);animation:scrollLine 2s ease 1.5s infinite}
-  @keyframes scrollLine{0%{left:-100%}100%{left:100%}}
-  .hero-stats{position:absolute;bottom:40px;right:48px;display:flex;gap:40px;opacity:0;transform:translateX(30px);transition:opacity .8s ease 1.4s,transform .8s ease 1.4s}
-  #hero.loaded .hero-stats{opacity:1;transform:translateX(0)}
-  .stat{text-align:center}
-  .stat-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--terra-light)}
-  .stat-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.5)}
-  .hero-dots{position:absolute;bottom:40px;left:48px;z-index:3;display:flex;gap:8px;opacity:0;transition:opacity .8s ease 1.6s}
-  #hero.loaded .hero-dots{opacity:1}
-  .hero-dot{width:24px;height:3px;background:rgba(250,250,247,.3);transition:background .3s,width .3s;cursor:pointer;border:none}
-  .hero-dot.active{background:var(--terra);width:40px}
-  /* MARQUEE */
-  .marquee-strip{background:var(--terra);padding:14px 0;overflow:hidden;display:flex}
-  .marquee-inner{display:flex;gap:60px;white-space:nowrap;animation:marquee 22s linear infinite}
-  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .marquee-item{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:20px}
-  .marquee-dot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%}
-  /* SECTION BASE */
-  section{padding:120px 48px}
-  .section-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:16px;display:flex;align-items:center;gap:12px}
-  .section-label::before{content:'';width:30px;height:1px;background:var(--terra)}
-  /* INTRO */
-  #intro{background:var(--ink-soft)}
-  .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-  .intro-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,68px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
-  .intro-headline em{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1em;color:var(--terra-light);font-weight:300;text-transform:none}
-  .intro-body{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;line-height:1.75;color:rgba(250,250,247,.75);margin-bottom:40px}
-  .intro-img-wrap{position:relative;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,#2C2620 0%,#C4622D44 100%)}
-  .intro-img-wrap img{transform:scale(1.1);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-  .intro-img-wrap.visible img{transform:scale(1)}
-  .intro-img-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(26,22,18,.85));padding:40px 24px 24px;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-pale)}
-  .intro-accent{width:1px;height:80px;background:var(--terra);margin:40px 0;transform:scaleY(0);transform-origin:top;transition:transform .8s cubic-bezier(.16,1,.3,1)}
-  .intro-accent.visible{transform:scaleY(1)}
-  /* PHOTO STRIP */
-  .strip-wrap{background:var(--ink);padding-bottom:3px}
-  .photo-strip{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
-  .photo-strip::-webkit-scrollbar{display:none}
-  .strip-item{flex-shrink:0;width:300px;height:400px;overflow:hidden;scroll-snap-align:start;position:relative;background:linear-gradient(135deg,var(--ink-soft),#3a2a1a)}
-  .strip-item img{transition:transform .8s cubic-bezier(.16,1,.3,1)}
-  .strip-item:hover img{transform:scale(1.05)}
-  .strip-caption{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(26,22,18,.82));font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-pale)}
-  /* PROPERTIES */
-  #properties{background:var(--cream);color:var(--ink)}
-  .props-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px}
-  .props-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;text-transform:uppercase;line-height:.95}
-  .props-filter{display:flex;gap:8px}
-  .filter-btn{padding:8px 18px;border:1px solid rgba(26,22,18,.2);background:transparent;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:'Barlow',sans-serif;color:var(--warm-gray);transition:all .3s;cursor:pointer}
-  .filter-btn.active,.filter-btn:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
-  .props-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:80px}
-  .prop-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:linear-gradient(135deg,#2C2620,#4a3020)}
-  .prop-card:first-child{grid-row:span 2;aspect-ratio:auto}
-  .prop-card img{transform:scale(1.08);transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;filter:brightness(.85)}
-  .prop-card:hover img{transform:scale(1.03);filter:brightness(.65)}
-  .prop-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,22,18,.92) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
-  .prop-type{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light);margin-bottom:8px}
-  .prop-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:6px}
-  .prop-location{font-size:12px;color:rgba(250,250,247,.6);letter-spacing:.08em;margin-bottom:16px}
-  .prop-meta{display:flex;gap:20px;align-items:center}
-  .prop-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--terra-light)}
-  .prop-specs{display:flex;gap:12px;font-size:11px;color:rgba(250,250,247,.5);letter-spacing:.08em}
-  .prop-arrow{margin-top:16px;width:36px;height:36px;border:1px solid rgba(250,250,247,.3);display:flex;align-items:center;justify-content:center;transition:all .3s;opacity:0;transform:translateY(8px)}
-  .prop-card:hover .prop-arrow{opacity:1;transform:translateY(0)}
-  .prop-arrow svg{width:14px;height:14px;stroke:var(--white)}
-  /* INTERIORS */
-  #interiors{background:var(--ink);padding:100px 0}
-  .interiors-header{padding:0 48px 60px;display:flex;justify-content:space-between;align-items:flex-end}
-  .interiors-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,4vw,56px);font-weight:800;text-transform:uppercase;line-height:.95}
-  .interiors-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;font-style:italic;color:rgba(250,250,247,.55);max-width:280px;text-align:right;line-height:1.6}
-  .mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:300px 300px;gap:3px}
-  .mosaic-item{overflow:hidden;position:relative;background:linear-gradient(135deg,var(--ink-soft),#3a2a1a)}
-  .mosaic-item img{transition:transform .9s cubic-bezier(.16,1,.3,1),filter .9s ease;filter:brightness(.82)}
-  .mosaic-item:hover img{transform:scale(1.04);filter:brightness(.65)}
-  .mosaic-tall{grid-row:span 2}
-  .mosaic-label{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(26,22,18,.8));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.7)}
-  /* FEATURED */
-  #featured{padding:0;position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
-  .featured-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#2C2620}
-  .featured-bg::after{content:'';position:absolute;inset:0;background:rgba(26,22,18,.6)}
-  .featured-content{position:relative;z-index:2;padding:0 48px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-  .featured-label-top{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-light);margin-bottom:20px;display:flex;align-items:center;gap:12px}
-  .featured-label-top::before{content:'';width:24px;height:1px;background:var(--terra)}
-  .featured-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(50px,6vw,90px);font-weight:900;text-transform:uppercase;line-height:.92;margin-bottom:24px}
-  .featured-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;color:rgba(250,250,247,.7);line-height:1.7;margin-bottom:36px}
-  .featured-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;border-top:1px solid rgba(250,250,247,.1);padding-top:32px}
-  .featured-spec-val{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:700;color:var(--terra-light);line-height:1}
-  .featured-spec-key{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.4);margin-top:4px}
-  .featured-price{font-family:'Barlow Condensed',sans-serif;font-size:54px;font-weight:800;color:var(--white);line-height:1;text-align:right}
-  .featured-price span{color:var(--terra-light)}
-  /* PROCESS */
-  #process{background:var(--ink-soft)}
-  .process-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,60px);font-weight:800;text-transform:uppercase;line-height:.95;max-width:400px;margin-bottom:80px}
-  .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-  .process-step{background:rgba(250,250,247,.03);padding:40px 32px;border-top:1px solid rgba(196,98,45,.3);transition:background .3s;position:relative;overflow:hidden}
-  .process-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
-  .process-step:hover::before{transform:scaleX(1)}
-  .process-step:hover{background:rgba(196,98,45,.07)}
-  .step-num{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;line-height:1;color:rgba(196,98,45,.15);margin-bottom:24px;transition:color .3s}
-  .process-step:hover .step-num{color:rgba(196,98,45,.3)}
-  .step-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;margin-bottom:12px}
-  .step-desc{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(250,250,247,.5);line-height:1.7}
-  /* DIVIDER */
-  .photo-divider{height:60vh;min-height:400px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2C2620,#1A1612)}
-  .photo-divider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4)}
-  .divider-text{position:relative;z-index:2;text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3.5vw,48px);font-weight:300;font-style:italic;color:rgba(250,250,247,.9);max-width:800px;line-height:1.4;padding:0 48px}
-  .divider-text cite{display:block;margin-top:24px;font-style:normal;font-family:'Barlow',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light)}
-  /* TESTIMONIAL */
-  #testimonial{background:var(--terra);padding:100px 48px;position:relative;overflow:hidden}
-  #testimonial::before{content:'\201C';position:absolute;top:-20px;left:32px;font-family:'Cormorant Garamond',serif;font-size:400px;font-weight:300;line-height:1;color:rgba(255,255,255,.08);pointer-events:none}
-  .testimonial-inner{max-width:760px;margin:0 auto;text-align:center}
-  .testimonial-text{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,38px);font-weight:300;font-style:italic;line-height:1.5;color:rgba(255,255,255,.95);margin-bottom:40px}
-  .testimonial-author{display:flex;align-items:center;justify-content:center;gap:16px}
-  .author-line{width:40px;height:1px;background:rgba(255,255,255,.4)}
-  .author-name{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-  /* COLLECTIONS CTA */
-  #listings-cta{padding:0}
-  .listings-header{padding:80px 48px 48px;background:var(--cream)}
-  .cta-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;text-transform:uppercase;line-height:.95;color:var(--ink)}
-  .cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
-  .cta-card{position:relative;overflow:hidden;height:520px;text-decoration:none;color:var(--white);display:block;background:linear-gradient(135deg,var(--ink-soft),#3a2a1a)}
-  .cta-card img{transform:scale(1.05);transition:transform .8s cubic-bezier(.16,1,.3,1);filter:brightness(.55)}
-  .cta-card:hover img{transform:scale(1);filter:brightness(.42)}
-  .cta-card-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;background:linear-gradient(transparent 20%,rgba(26,22,18,.88))}
-  .cta-card-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-light);margin-bottom:10px}
-  .cta-card-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;text-transform:uppercase;line-height:.95;margin-bottom:20px}
-  .cta-link{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.8);border-bottom:1px solid rgba(250,250,247,.3);padding-bottom:4px;transition:color .3s,border-color .3s}
-  .cta-card:hover .cta-link{color:var(--terra-light);border-color:var(--terra)}
-  .cta-link svg{width:12px;height:12px;stroke:currentColor;transition:transform .3s}
-  .cta-card:hover .cta-link svg{transform:translateX(4px)}
-  /* CONTACT */
-  #contact{background:var(--ink);padding:120px 48px}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
-  .contact-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,72px);font-weight:900;text-transform:uppercase;line-height:.92;margin-bottom:24px}
-  .contact-headline span{color:var(--terra)}
-  .contact-body{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:rgba(250,250,247,.65);line-height:1.7;margin-bottom:48px}
-  .contact-info{display:flex;flex-direction:column;gap:20px;margin-bottom:48px}
-  .contact-item{display:flex;align-items:center;gap:16px;font-size:13px;letter-spacing:.06em;color:rgba(250,250,247,.6)}
-  .contact-icon{width:36px;height:36px;border:1px solid rgba(196,98,45,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .contact-icon svg{width:14px;height:14px;stroke:var(--terra)}
-  .contact-form{display:flex;flex-direction:column;gap:16px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .form-field{display:flex;flex-direction:column;gap:6px}
-  .form-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,250,247,.4)}
-  .form-input,.form-select,.form-textarea{background:rgba(250,250,247,.04);border:1px solid rgba(250,250,247,.1);color:var(--white);padding:14px 16px;font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .3s,background .3s;-webkit-appearance:none}
-  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--terra);background:rgba(196,98,45,.06)}
-  .form-select option{background:var(--ink-soft)}
-  .form-textarea{height:120px;resize:none}
-  .btn{background:var(--terra);color:var(--white);padding:16px 40px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s,transform .15s;display:inline-flex;align-items:center;gap:10px;width:fit-content}
-  .btn:hover{background:var(--terra-light);transform:translateY(-1px)}
-  .btn svg{width:14px;height:14px;stroke:currentColor;transition:transform .3s}
-  .btn:hover svg{transform:translateX(3px)}
-  /* FOOTER */
-  footer{background:var(--ink-soft);padding:60px 48px 40px;border-top:1px solid rgba(250,250,247,.06)}
-  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
-  .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-  .footer-brand-word{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;letter-spacing:.12em}
-  .footer-tagline{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;font-style:italic;color:rgba(250,250,247,.4);line-height:1.6;max-width:260px}
-  .footer-col-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px}
-  .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
-  .footer-links a{font-size:13px;color:rgba(250,250,247,.5);text-decoration:none;transition:color .3s;letter-spacing:.04em}
-  .footer-links a:hover{color:var(--white)}
-  .footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(250,250,247,.06);font-size:11px;color:rgba(250,250,247,.3);letter-spacing:.06em}
-  /* REVEAL */
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-  .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  .reveal-left.visible{opacity:1;transform:translateX(0)}
-  .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  .reveal-right.visible{opacity:1;transform:translateX(0)}
-  /* PAGE OVERLAY */
-  #page-overlay{position:fixed;inset:0;background:var(--terra);z-index:9997;transform-origin:top;animation:overlayOut 1.2s cubic-bezier(.16,1,.3,1) .1s forwards}
-  @keyframes overlayOut{0%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom;visibility:hidden}}
-  /* MODAL */
-  #prop-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;background:rgba(26,22,18,.88);backdrop-filter:blur(8px)}
-  #prop-modal.open{opacity:1;pointer-events:all}
-  .modal-inner{background:var(--ink-soft);max-width:960px;width:92%;display:grid;grid-template-columns:1fr 1fr;max-height:90vh;overflow:hidden;transform:translateY(20px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);position:relative}
-  #prop-modal.open .modal-inner{transform:translateY(0) scale(1)}
-  .modal-gallery{overflow:hidden;position:relative;background:var(--ink)}
-  .modal-gallery-main{height:calc(100% - 54px);min-height:350px;overflow:hidden}
-  .modal-gallery-main img{height:100%;width:100%;object-fit:cover}
-  .modal-thumbs{display:flex;gap:3px;padding:3px;background:rgba(26,22,18,.6);height:54px}
-  .modal-thumb{width:70px;flex-shrink:0;overflow:hidden;cursor:pointer;opacity:.55;transition:opacity .3s;height:48px}
-  .modal-thumb.active,.modal-thumb:hover{opacity:1;outline:2px solid var(--terra)}
-  .modal-thumb img{height:100%;width:100%;object-fit:cover}
-  .modal-body{padding:44px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
-  .modal-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid rgba(250,250,247,.2);background:rgba(26,22,18,.8);cursor:pointer;color:var(--white);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .3s;z-index:10;line-height:1}
-  .modal-close:hover{background:var(--terra)}
-  .modal-prop-type{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
-  .modal-prop-name{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;text-transform:uppercase;line-height:.95}
-  .modal-prop-price{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:var(--terra-light)}
-  .modal-divider{height:1px;background:rgba(250,250,247,.1)}
-  .modal-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .modal-spec-val{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--white)}
-  .modal-spec-key{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.4)}
-  .modal-desc{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:rgba(250,250,247,.65);line-height:1.7}
-  @media(max-width:900px){
-    nav{padding:16px 20px}.nav-links{display:none}
-    section{padding:70px 20px}
-    .hero-content{grid-template-columns:1fr;padding:0 20px 60px}.hero-right,.hero-stats{display:none}
-    .intro-grid,.featured-content,.contact-grid{grid-template-columns:1fr;gap:40px}
-    .props-grid{grid-template-columns:1fr 1fr}.prop-card:first-child{grid-row:auto}
-    .process-steps{grid-template-columns:1fr 1fr}
-    .cta-grid,.mosaic{grid-template-columns:1fr 1fr}
-    .mosaic-tall{grid-row:auto}
-    .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
-    .modal-inner{grid-template-columns:1fr}.modal-gallery,.modal-gallery-main{height:220px;min-height:220px}
-    .interiors-header{flex-direction:column;gap:16px;align-items:flex-start}
-    .interiors-sub{text-align:left}
-  }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --terra:#C4622D;--terra-light:#E8824A;--terra-pale:#F5D5C0;
+  --sand:#E8DDD0;--cream:#F5F0E8;--ink:#1A1612;--ink-soft:#2C2620;
+  --warm-gray:#8B7E72;--gold:#C9A84C;--white:#FAFAF7;
+  --page-speed:.65s;
+}
+html{overflow:hidden;height:100%}
+body{background:var(--ink);color:var(--white);font-family:'Barlow',sans-serif;overflow:hidden;height:100%}
+
+/* ═══════════════════════════════════════════════
+   SCENE GRADIENTS
+═══════════════════════════════════════════════ */
+.scene{width:100%;height:100%;position:absolute;inset:0}
+.sc-desert{background:linear-gradient(160deg,#7a3a1a 0%,#b85a28 20%,#e8925a 40%,#c47030 55%,#6b3518 75%,#1a1210 100%)}
+.sc-coast{background:linear-gradient(160deg,#0a2a4a 0%,#1a4a6a 25%,#2a6a8a 45%,#1a4a5a 65%,#0a2030 100%)}
+.sc-mountain{background:linear-gradient(160deg,#1a2030 0%,#2a3550 25%,#3a4a60 45%,#505f70 60%,#2a3040 80%,#100f0e 100%)}
+.sc-interior{background:linear-gradient(160deg,#2a1a0a 0%,#4a2a10 20%,#7a4a20 40%,#9a6a30 55%,#3a2010 80%,#1a100a 100%)}
+.scene-art{position:absolute;inset:0;opacity:.18;pointer-events:none}
+.scene-art svg{width:100%;height:100%}
+.scene-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* ═══════════════════════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════════════════════ */
+.page{
+  position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;
+  z-index:10;visibility:hidden;pointer-events:none;
+  scroll-behavior:smooth;
+}
+.page.active{visibility:visible;pointer-events:all;z-index:20}
+
+/* ─── Transition: RISE (home ↔ properties) */
+.page.exit-rise{animation:exitRise var(--page-speed) cubic-bezier(.86,0,.07,1) forwards}
+.page.enter-rise{animation:enterRise var(--page-speed) cubic-bezier(.16,1,.3,1) forwards}
+.page.exit-drop{animation:exitDrop var(--page-speed) cubic-bezier(.86,0,.07,1) forwards}
+.page.enter-drop{animation:enterDrop var(--page-speed) cubic-bezier(.16,1,.3,1) forwards}
+@keyframes exitRise{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-6%);opacity:0}}
+@keyframes enterRise{0%{transform:translateY(100%)}100%{transform:translateY(0)}}
+@keyframes exitDrop{0%{transform:translateY(0);opacity:1}100%{transform:translateY(6%);opacity:0}}
+@keyframes enterDrop{0%{transform:translateY(-100%)}100%{transform:translateY(0)}}
+
+/* ─── Transition: SLIDE (properties ↔ featured) */
+.page.exit-slide-l{animation:exitSlideL var(--page-speed) cubic-bezier(.86,0,.07,1) forwards}
+.page.enter-slide-l{animation:enterSlideL var(--page-speed) cubic-bezier(.16,1,.3,1) forwards}
+.page.exit-slide-r{animation:exitSlideR var(--page-speed) cubic-bezier(.86,0,.07,1) forwards}
+.page.enter-slide-r{animation:enterSlideR var(--page-speed) cubic-bezier(.16,1,.3,1) forwards}
+@keyframes exitSlideL{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+@keyframes enterSlideL{0%{transform:translateX(100%)}100%{transform:translateX(0)}}
+@keyframes exitSlideR{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
+@keyframes enterSlideR{0%{transform:translateX(-100%)}100%{transform:translateX(0)}}
+
+/* ─── Transition: CURTAIN (featured ↔ process) */
+.page.exit-curtain{animation:exitCurtain var(--page-speed) ease forwards}
+.page.enter-curtain{animation:enterCurtain var(--page-speed) ease forwards}
+@keyframes exitCurtain{0%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 100% 0)}}
+@keyframes enterCurtain{0%{clip-path:inset(100% 0 0 0)}100%{clip-path:inset(0 0 0 0)}}
+
+/* ─── Transition: RADIAL (process ↔ contact) */
+.page.exit-radial{animation:exitRadial var(--page-speed) cubic-bezier(.4,0,.2,1) forwards}
+.page.enter-radial{animation:enterRadial var(--page-speed) cubic-bezier(.4,0,.2,1) forwards}
+@keyframes exitRadial{0%{clip-path:circle(150% at 50% 50%);opacity:1}100%{clip-path:circle(0% at 50% 50%);opacity:.4}}
+@keyframes enterRadial{0%{clip-path:circle(0% at 50% 50%)}100%{clip-path:circle(150% at 50% 50%)}}
+
+/* ─── Transition overlay strip */
+#trans-strip{
+  position:fixed;inset:0;z-index:9500;pointer-events:none;
+  display:flex;flex-direction:column;gap:0;
+}
+.trans-bar{
+  flex:1;background:var(--terra);
+  transform:scaleX(0);transform-origin:left;
+}
+#trans-strip.sweep .trans-bar:nth-child(1){animation:barSweep .5s cubic-bezier(.86,0,.07,1) 0s   forwards}
+#trans-strip.sweep .trans-bar:nth-child(2){animation:barSweep .5s cubic-bezier(.86,0,.07,1) .04s  forwards}
+#trans-strip.sweep .trans-bar:nth-child(3){animation:barSweep .5s cubic-bezier(.86,0,.07,1) .08s  forwards}
+#trans-strip.sweep .trans-bar:nth-child(4){animation:barSweep .5s cubic-bezier(.86,0,.07,1) .12s  forwards}
+#trans-strip.sweep .trans-bar:nth-child(5){animation:barSweep .5s cubic-bezier(.86,0,.07,1) .06s  forwards}
+@keyframes barSweep{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}50.001%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+
+/* ═══════════════════════════════════════════════
+   NAV (fixed, above all pages)
+═══════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:8000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 48px;transition:background .4s,padding .4s;
+}
+nav.scrolled{background:rgba(26,22,18,.92);backdrop-filter:blur(20px);padding:16px 48px;border-bottom:1px solid rgba(196,98,45,.15)}
+nav.light-nav{/* for cream pages */}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer}
+.nav-wordmark{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;letter-spacing:.2em;color:var(--white);text-transform:uppercase}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.65);text-decoration:none;transition:color .3s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active{color:var(--terra-light)}
+.nav-cta{background:var(--white);color:var(--ink);padding:10px 24px;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:none;text-decoration:none;transition:background .3s,color .3s;display:flex;align-items:center;gap:8px;cursor:pointer}
+.nav-cta:hover{background:var(--terra);color:var(--white)}
+.nav-cta svg{width:14px;height:14px}
+
+/* ═══════════════════════════════════════════════
+   SHARED COMPONENTS
+═══════════════════════════════════════════════ */
+.section-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:30px;height:1px;background:var(--terra)}
+.btn{background:var(--terra);color:var(--white);padding:16px 40px;border:none;cursor:pointer;font-family:'Barlow',sans-serif;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:background .3s,transform .15s;display:inline-flex;align-items:center;gap:10px;width:fit-content}
+.btn:hover{background:var(--terra-light);transform:translateY(-1px)}
+.btn svg{width:14px;height:14px;stroke:currentColor;transition:transform .3s}
+.btn:hover svg{transform:translateX(3px)}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ═══════════════════════════════════════════════
+   PAGE 0 — HOME
+═══════════════════════════════════════════════ */
+#page-home{background:var(--ink)}
+
+/* Hero */
+#hero{height:100vh;min-height:700px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-slides{position:absolute;inset:0}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.hero-slide.active{opacity:1}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,22,18,.1) 0%,rgba(26,22,18,0) 40%,rgba(26,22,18,.82) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 48px 80px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.hero-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(72px,9vw,140px);font-weight:900;line-height:.92;letter-spacing:-.01em;text-transform:uppercase;overflow:hidden}
+.hero-headline .line{display:block;transform:translateY(120%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+#hero.loaded .hero-headline .line:nth-child(1){transform:translateY(0);transition-delay:.2s}
+#hero.loaded .hero-headline .line:nth-child(2){transform:translateY(0);transition-delay:.35s}
+#hero.loaded .hero-headline .line:nth-child(3){transform:translateY(0);transition-delay:.5s}
+.hero-right{display:flex;flex-direction:column;gap:24px;align-items:flex-end}
+.hero-tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light);opacity:0;transition:opacity .8s ease .8s}
+#hero.loaded .hero-tag{opacity:1}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;color:rgba(250,250,247,.8);line-height:1.6;max-width:280px;text-align:right;opacity:0;transform:translateY(20px);transition:opacity .8s ease 1s,transform .8s ease 1s}
+#hero.loaded .hero-sub{opacity:1;transform:translateY(0)}
+.hero-scroll{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.5);opacity:0;transition:opacity .8s ease 1.2s}
+#hero.loaded .hero-scroll{opacity:1}
+.scroll-line{width:40px;height:1px;background:rgba(250,250,247,.3);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--terra-light);animation:scrollLine 2s ease 1.5s infinite}
+@keyframes scrollLine{0%{left:-100%}100%{left:100%}}
+.hero-stats{position:absolute;bottom:40px;right:48px;display:flex;gap:40px;opacity:0;transform:translateX(30px);transition:opacity .8s ease 1.4s,transform .8s ease 1.4s}
+#hero.loaded .hero-stats{opacity:1;transform:translateX(0)}
+.stat{text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--terra-light)}
+.stat-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.5)}
+.hero-dots{position:absolute;bottom:40px;left:48px;z-index:3;display:flex;gap:8px;opacity:0;transition:opacity .8s ease 1.6s}
+#hero.loaded .hero-dots{opacity:1}
+.hero-dot{width:24px;height:3px;background:rgba(250,250,247,.3);transition:background .3s,width .3s;cursor:pointer;border:none}
+.hero-dot.active{background:var(--terra);width:40px}
+
+/* Marquee */
+.marquee-strip{background:var(--terra);padding:14px 0;overflow:hidden;display:flex;flex-shrink:0}
+.marquee-inner{display:flex;gap:60px;white-space:nowrap;animation:marquee 22s linear infinite}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:20px}
+.marquee-dot{width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%}
+
+/* Photo strip */
+.strip-wrap{background:var(--ink);padding-bottom:3px}
+.photo-strip{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.photo-strip::-webkit-scrollbar{display:none}
+.strip-item{flex-shrink:0;width:300px;height:400px;overflow:hidden;scroll-snap-align:start;position:relative}
+.strip-item .scene{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.strip-item:hover .scene{transform:scale(1.04)}
+.strip-caption{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(transparent,rgba(26,22,18,.85));font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-pale);z-index:2}
+
+/* Intro */
+#intro{background:var(--ink-soft);padding:120px 48px}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.intro-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(42px,5vw,68px);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+.intro-headline em{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1em;color:var(--terra-light);font-weight:300;text-transform:none}
+.intro-body{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;line-height:1.75;color:rgba(250,250,247,.75);margin-bottom:40px}
+.intro-visual{position:relative;aspect-ratio:4/5;overflow:hidden}
+.intro-img-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(26,22,18,.85));padding:40px 24px 24px;font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-pale);z-index:2}
+.intro-accent{width:1px;height:80px;background:var(--terra);margin:40px 0;transform:scaleY(0);transform-origin:top;transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.intro-accent.visible{transform:scaleY(1)}
+
+/* ═══════════════════════════════════════════════
+   PAGE 1 — PROPERTIES
+═══════════════════════════════════════════════ */
+#page-properties{background:var(--cream);color:var(--ink)}
+
+#properties{padding:120px 48px}
+.props-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px}
+.props-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;text-transform:uppercase;line-height:.95}
+.props-filter{display:flex;gap:8px}
+.filter-btn{padding:8px 18px;border:1px solid rgba(26,22,18,.2);background:transparent;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-family:'Barlow',sans-serif;color:var(--warm-gray);transition:all .3s;cursor:pointer}
+.filter-btn.active,.filter-btn:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
+.props-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:80px}
+.prop-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4}
+.prop-card:first-child{grid-row:span 2;aspect-ratio:auto}
+.prop-card .scene{transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease}
+.prop-card:hover .scene{transform:scale(1.04);filter:brightness(.8)}
+.prop-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(26,22,18,.95) 0%,rgba(26,22,18,.3) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.prop-type{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light);margin-bottom:8px}
+.prop-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:6px}
+.prop-location{font-size:12px;color:rgba(250,250,247,.6);letter-spacing:.08em;margin-bottom:16px}
+.prop-meta{display:flex;gap:20px;align-items:center}
+.prop-price{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--terra-light)}
+.prop-specs{display:flex;gap:12px;font-size:11px;color:rgba(250,250,247,.5);letter-spacing:.08em}
+.prop-arrow{margin-top:16px;width:36px;height:36px;border:1px solid rgba(250,250,247,.3);display:flex;align-items:center;justify-content:center;transition:all .3s;opacity:0;transform:translateY(8px)}
+.prop-card:hover .prop-arrow{opacity:1;transform:translateY(0)}
+.prop-arrow svg{width:14px;height:14px;stroke:var(--white)}
+
+/* Interiors section within properties page */
+#interiors{background:var(--ink);padding:100px 0}
+.interiors-header{padding:0 48px 60px;display:flex;justify-content:space-between;align-items:flex-end}
+.interiors-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,4vw,56px);font-weight:800;text-transform:uppercase;line-height:.95}
+.interiors-sub{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;font-style:italic;color:rgba(250,250,247,.55);max-width:280px;text-align:right;line-height:1.6}
+.mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:300px 300px;gap:3px}
+.mosaic-item{overflow:hidden;position:relative}
+.mosaic-item .scene{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.mosaic-item:hover .scene{transform:scale(1.04)}
+.mosaic-tall{grid-row:span 2}
+.mosaic-label{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(26,22,18,.82));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.7);z-index:2}
+
+/* ═══════════════════════════════════════════════
+   PAGE 2 — FEATURED
+═══════════════════════════════════════════════ */
+#page-featured{background:var(--ink)}
+
+/* Featured hero */
+#featured{padding:0;position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
+.featured-bg{position:absolute;inset:0}
+.featured-bg::after{content:'';position:absolute;inset:0;background:rgba(26,22,18,.52)}
+.featured-content{position:relative;z-index:2;padding:0 48px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.featured-label-top{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-light);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.featured-label-top::before{content:'';width:24px;height:1px;background:var(--terra)}
+.featured-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(50px,6vw,90px);font-weight:900;text-transform:uppercase;line-height:.92;margin-bottom:24px}
+.featured-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;font-style:italic;color:rgba(250,250,247,.7);line-height:1.7;margin-bottom:36px}
+.featured-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;border-top:1px solid rgba(250,250,247,.1);padding-top:32px}
+.featured-spec-val{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:700;color:var(--terra-light);line-height:1}
+.featured-spec-key{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.4);margin-top:4px}
+.featured-price{font-family:'Barlow Condensed',sans-serif;font-size:54px;font-weight:800;color:var(--white);line-height:1;text-align:right}
+.featured-price span{color:var(--terra-light)}
+
+/* Testimonial */
+#testimonial{background:var(--terra);padding:100px 48px;position:relative;overflow:hidden}
+#testimonial::before{content:'\201C';position:absolute;top:-20px;left:32px;font-family:'Cormorant Garamond',serif;font-size:400px;font-weight:300;line-height:1;color:rgba(255,255,255,.08);pointer-events:none}
+.testimonial-inner{max-width:760px;margin:0 auto;text-align:center}
+.testimonial-text{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,38px);font-weight:300;font-style:italic;line-height:1.5;color:rgba(255,255,255,.95);margin-bottom:40px}
+.testimonial-author{display:flex;align-items:center;justify-content:center;gap:16px}
+.author-line{width:40px;height:1px;background:rgba(255,255,255,.4)}
+.author-name{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+
+/* Collections */
+#listings-cta{padding:0}
+.listings-header{padding:80px 48px 48px;background:var(--cream)}
+.listings-header .section-label{color:var(--terra)}
+.cta-headline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;text-transform:uppercase;line-height:.95;color:var(--ink)}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
+.cta-card{position:relative;overflow:hidden;height:520px;text-decoration:none;color:var(--white);display:block;cursor:pointer}
+.cta-card .scene{transition:transform .8s cubic-bezier(.16,1,.3,1)}
+.cta-card:hover .scene{transform:scale(1.03)}
+.cta-card-inner{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;background:linear-gradient(transparent 20%,rgba(26,22,18,.92))}
+.cta-card-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-light);margin-bottom:10px}
+.cta-card-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;text-transform:uppercase;line-height:.95;margin-bottom:20px}
+.cta-link{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.8);border-bottom:1px solid rgba(250,250,247,.3);padding-bottom:4px;transition:color .3s,border-color .3s}
+.cta-card:hover .cta-link{color:var(--terra-light);border-color:var(--terra)}
+.cta-link svg{width:12px;height:12px;stroke:currentColor;transition:transform .3s}
+.cta-card:hover .cta-link svg{transform:translateX(4px)}
+
+/* ═══════════════════════════════════════════════
+   PAGE 3 — PROCESS
+═══════════════════════════════════════════════ */
+#page-process{background:var(--ink-soft)}
+#process{padding:120px 48px}
+.process-page-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:100px}
+.process-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(48px,6vw,80px);font-weight:900;text-transform:uppercase;line-height:.9}
+.process-intro{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;font-style:italic;color:rgba(250,250,247,.65);line-height:1.65}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:100px}
+.process-step{background:rgba(250,250,247,.03);padding:40px 32px;border-top:1px solid rgba(196,98,45,.3);transition:background .3s;position:relative;overflow:hidden}
+.process-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.process-step:hover::before{transform:scaleX(1)}
+.process-step:hover{background:rgba(196,98,45,.07)}
+.step-num{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;line-height:1;color:rgba(196,98,45,.15);margin-bottom:24px;transition:color .3s}
+.process-step:hover .step-num{color:rgba(196,98,45,.3)}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;margin-bottom:12px}
+.step-desc{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(250,250,247,.5);line-height:1.7}
+/* Process divider */
+.process-divider{position:relative;height:55vh;min-height:380px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.process-divider::after{content:'';position:absolute;inset:0;background:rgba(26,22,18,.5);z-index:1}
+.process-divider-text{position:relative;z-index:2;text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,44px);font-weight:300;font-style:italic;color:rgba(250,250,247,.9);max-width:780px;line-height:1.4;padding:0 48px}
+.process-divider-text cite{display:block;margin-top:22px;font-style:normal;font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light)}
+
+/* ═══════════════════════════════════════════════
+   PAGE 4 — CONTACT  (unique redesign)
+═══════════════════════════════════════════════ */
+#page-contact{
+  background:var(--ink);
+  display:flex;flex-direction:column;
+}
+
+/* Background layer */
+.contact-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(125deg,#1a1612 0%,#2c1e10 35%,#3a2010 55%,#1e1410 80%,#1a1612 100%);
+}
+.contact-bg::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 80% 30%, rgba(196,98,45,.18) 0%, transparent 70%);
+}
+.contact-bg-text{
+  position:absolute;bottom:-10px;right:-10px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(180px,22vw,340px);font-weight:900;
+  line-height:1;letter-spacing:-.04em;text-transform:uppercase;
+  color:rgba(196,98,45,.06);pointer-events:none;white-space:nowrap;
+}
+
+/* Contact layout */
+#contact-section{
+  position:relative;z-index:1;
+  flex:1;
+  display:flex;flex-direction:column;
+  padding:120px 48px 60px;
+  min-height:100vh;
+}
+
+/* Top bar: label + headline + tagline */
+.contact-top{
+  display:grid;grid-template-columns:1fr 2fr 1fr;
+  gap:40px;align-items:end;
+  margin-bottom:64px;
+  padding-bottom:40px;
+  border-bottom:1px solid rgba(196,98,45,.2);
+}
+.contact-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px}
+.contact-eyebrow::before{content:'';width:24px;height:1px;background:var(--terra)}
+.contact-big-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(54px,7vw,108px);
+  font-weight:900;line-height:.88;
+  text-transform:uppercase;letter-spacing:-.02em;
+}
+.contact-big-title em{
+  font-style:italic;font-family:'Cormorant Garamond',serif;
+  font-size:.8em;color:var(--terra-light);font-weight:300;
+  display:block;text-transform:none;
+}
+.contact-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:300;font-style:italic;
+  color:rgba(250,250,247,.5);line-height:1.65;
+  text-align:right;
+}
+
+/* Three contact detail pillars */
+.contact-pillars{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(196,98,45,.15);
+  margin-bottom:60px;
+}
+.pillar{
+  background:rgba(26,22,18,.6);backdrop-filter:blur(4px);
+  padding:28px 32px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .3s;
+}
+.pillar:hover{background:rgba(196,98,45,.08)}
+.pillar-icon{
+  width:32px;height:32px;border:1px solid rgba(196,98,45,.3);
+  display:flex;align-items:center;justify-content:center;margin-bottom:6px;
+}
+.pillar-icon svg{width:14px;height:14px;stroke:var(--terra)}
+.pillar-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,247,.35)}
+.pillar-value{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:600;color:var(--white);letter-spacing:.04em}
+.pillar-sub{font-size:12px;color:rgba(250,250,247,.4);letter-spacing:.04em}
+
+/* Form — horizontal strip design */
+.contact-form-wrap{
+  flex:1;display:flex;flex-direction:column;gap:0;
+}
+.form-strip{
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:1px;background:rgba(196,98,45,.12);
+  margin-bottom:1px;
+}
+.form-strip-wide{
+  grid-template-columns:1fr 1fr;
+}
+.form-field-block{
+  background:rgba(250,250,247,.02);
+  padding:0;
+  display:flex;flex-direction:column;
+  transition:background .25s;
+}
+.form-field-block:focus-within{background:rgba(196,98,45,.06)}
+.field-label{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(250,250,247,.3);
+  padding:14px 20px 0;
+}
+.form-input,.form-select,.form-textarea{
+  background:transparent;border:none;
+  color:var(--white);
+  padding:8px 20px 14px;font-family:'Barlow',sans-serif;font-size:15px;
+  outline:none;-webkit-appearance:none;width:100%;
+}
+.form-select option{background:var(--ink-soft);color:var(--white)}
+.form-textarea{height:100px;resize:none;padding:8px 20px 14px;line-height:1.5}
+.form-textarea-block{grid-column:span 2}
+
+.contact-submit-row{
+  display:grid;grid-template-columns:1fr auto;
+  gap:1px;background:rgba(196,98,45,.12);
+}
+.submit-message{
+  background:rgba(250,250,247,.02);
+  padding:20px 24px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-style:italic;
+  color:rgba(250,250,247,.3);
+  display:flex;align-items:center;
+}
+.btn-submit{
+  background:var(--terra);color:var(--white);
+  padding:20px 52px;border:none;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  display:flex;align-items:center;gap:14px;
+  transition:background .3s,gap .3s;
+  white-space:nowrap;
+}
+.btn-submit:hover{background:var(--terra-light);gap:20px}
+.btn-submit svg{width:16px;height:16px;stroke:currentColor}
+
+/* Contact footer strip */
+.contact-footer-strip{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(250,250,247,.06);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(26,22,18,.6);
+  font-size:11px;color:rgba(250,250,247,.3);letter-spacing:.06em;
+}
+.contact-footer-logo{display:flex;align-items:center;gap:10px}
+.contact-footer-word{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;letter-spacing:.14em;color:rgba(250,250,247,.4)}
+
+/* ═══════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════ */
+#prop-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;background:rgba(26,22,18,.88);backdrop-filter:blur(8px)}
+#prop-modal.open{opacity:1;pointer-events:all}
+.modal-inner{background:var(--ink-soft);max-width:960px;width:92%;display:grid;grid-template-columns:1fr 1fr;max-height:90vh;overflow:hidden;transform:translateY(20px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);position:relative}
+#prop-modal.open .modal-inner{transform:translateY(0) scale(1)}
+.modal-gallery{overflow:hidden;position:relative}
+.modal-gallery-main{height:calc(100% - 58px);min-height:350px;overflow:hidden;position:relative}
+.modal-thumbs{display:flex;gap:3px;padding:3px;background:rgba(0,0,0,.4);height:58px}
+.modal-thumb{width:72px;flex-shrink:0;overflow:hidden;cursor:pointer;opacity:.5;transition:opacity .3s;height:52px;position:relative}
+.modal-thumb.active,.modal-thumb:hover{opacity:1;outline:2px solid var(--terra)}
+.modal-body{padding:44px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.modal-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border:1px solid rgba(250,250,247,.2);background:rgba(26,22,18,.8);cursor:pointer;color:var(--white);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .3s;z-index:10;line-height:1}
+.modal-close:hover{background:var(--terra)}
+.modal-prop-type{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.modal-prop-name{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;text-transform:uppercase;line-height:.95}
+.modal-prop-price{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:var(--terra-light)}
+.modal-divider{height:1px;background:rgba(250,250,247,.1)}
+.modal-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.modal-spec-val{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;color:var(--white)}
+.modal-spec-key{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.4)}
+.modal-desc{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;color:rgba(250,250,247,.65);line-height:1.7}
+
+/* ═══════════════════════════════════════════════
+   PAGE INDICATOR
+═══════════════════════════════════════════════ */
+#page-indicator{
+  position:fixed;right:24px;top:50%;transform:translateY(-50%);
+  z-index:7000;display:flex;flex-direction:column;gap:10px;
+}
+.page-pip{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(250,250,247,.2);
+  transition:background .3s,transform .3s;cursor:pointer;border:none;
+}
+.page-pip.active{background:var(--terra);transform:scale(1.4)}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  nav{padding:16px 20px}.nav-links{display:none}
+  .hero-content{grid-template-columns:1fr;padding:0 20px 60px}.hero-right,.hero-stats{display:none}
+  #intro{padding:70px 20px}
+  .intro-grid{grid-template-columns:1fr;gap:40px}
+  #properties{padding:90px 20px}
+  .props-header{flex-direction:column;align-items:flex-start;gap:20px}
+  .props-grid{grid-template-columns:1fr 1fr}.prop-card:first-child{grid-row:auto}
+  #interiors{padding:70px 0}
+  .interiors-header{flex-direction:column;gap:16px;align-items:flex-start;padding:0 20px 40px}
+  .interiors-sub{text-align:left}.mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}.mosaic-tall{grid-row:auto}
+  .featured-content{grid-template-columns:1fr;padding:0 20px;gap:32px}
+  #testimonial{padding:70px 20px}
+  .listings-header{padding:60px 20px 36px}
+  .cta-grid{grid-template-columns:1fr}
+  #process{padding:90px 20px}
+  .process-page-header{grid-template-columns:1fr;gap:24px}
+  .process-steps{grid-template-columns:1fr 1fr}
+  #contact-section{padding:90px 20px 40px}
+  .contact-top{grid-template-columns:1fr;gap:20px}
+  .contact-tagline{text-align:left}
+  .contact-pillars{grid-template-columns:1fr}
+  .form-strip{grid-template-columns:1fr 1fr}
+  .form-strip-wide{grid-template-columns:1fr}
+  .form-textarea-block{grid-column:auto}
+  .contact-submit-row{grid-template-columns:1fr}
+  .submit-message{display:none}
+  .modal-inner{grid-template-columns:1fr}.modal-gallery,.modal-gallery-main{height:220px;min-height:220px}
+  #page-indicator{display:none}
+}
 </style>
 </head>
 <body>
-<div id="page-overlay"></div>
 
-<!-- MODAL -->
+<!-- ── SVG DEFS ─────────────────────────────────────────────────────────────── -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <symbol id="art-desert" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+    <polygon points="0,500 180,220 260,320 340,180 440,280 520,160 600,240 680,140 800,200 800,500" fill="rgba(100,40,10,.35)"/>
+    <rect x="200" y="240" width="380" height="180" fill="rgba(245,235,215,.12)"/>
+    <rect x="195" y="235" width="390" height="6" fill="rgba(255,200,140,.2)"/>
+    <rect x="220" y="260" width="60" height="40" fill="rgba(255,180,80,.25)"/>
+    <rect x="300" y="260" width="60" height="40" fill="rgba(255,180,80,.2)"/>
+    <rect x="420" y="255" width="80" height="55" fill="rgba(255,180,80,.18)"/>
+    <rect x="520" y="260" width="40" height="40" fill="rgba(255,180,80,.2)"/>
+    <rect x="350" y="418" width="80" height="6" fill="rgba(245,235,215,.15)"/>
+    <rect x="360" y="410" width="60" height="8" fill="rgba(245,235,215,.12)"/>
+    <line x1="160" y1="420" x2="160" y2="340" stroke="rgba(180,120,60,.4)" stroke-width="3"/>
+    <line x1="140" y1="380" x2="160" y2="360" stroke="rgba(180,120,60,.35)" stroke-width="2"/>
+    <line x1="180" y1="375" x2="160" y2="355" stroke="rgba(180,120,60,.35)" stroke-width="2"/>
+    <line x1="630" y1="430" x2="630" y2="350" stroke="rgba(180,120,60,.4)" stroke-width="3"/>
+  </symbol>
+  <symbol id="art-coast" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+    <rect x="0" y="380" width="800" height="120" fill="rgba(30,80,120,.3)"/>
+    <polygon points="0,500 0,360 120,320 200,360 200,500" fill="rgba(60,50,40,.3)"/>
+    <rect x="180" y="200" width="420" height="200" fill="rgba(245,240,235,.1)"/>
+    <rect x="220" y="150" width="340" height="55" fill="rgba(245,240,235,.08)"/>
+    <rect x="175" y="195" width="430" height="7" fill="rgba(255,255,255,.15)"/>
+    <rect x="195" y="215" width="120" height="90" fill="rgba(100,180,220,.2)"/>
+    <rect x="325" y="215" width="120" height="90" fill="rgba(100,180,220,.18)"/>
+    <rect x="455" y="215" width="120" height="90" fill="rgba(100,180,220,.2)"/>
+    <rect x="200" y="395" width="380" height="22" fill="rgba(60,150,200,.25)"/>
+  </symbol>
+  <symbol id="art-mountain" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+    <polygon points="0,500 0,280 150,100 300,250 400,80 550,220 700,60 800,180 800,500" fill="rgba(40,60,90,.35)"/>
+    <polygon points="150,100 110,200 190,200" fill="rgba(220,230,245,.12)"/>
+    <polygon points="400,80 360,175 440,175" fill="rgba(220,230,245,.1)"/>
+    <polygon points="700,60 660,155 740,155" fill="rgba(220,230,245,.1)"/>
+    <polygon points="230,430 230,295 390,230 550,295 550,430" fill="rgba(180,140,90,.15)"/>
+    <polygon points="210,300 390,225 570,300" fill="rgba(100,70,40,.3)"/>
+    <rect x="265" y="320" width="50" height="45" fill="rgba(255,180,80,.22)"/>
+    <rect x="340" y="320" width="50" height="45" fill="rgba(255,180,80,.22)"/>
+    <rect x="415" y="320" width="50" height="45" fill="rgba(255,180,80,.22)"/>
+    <polygon points="80,430 80,360 110,360" fill="rgba(30,60,30,.35)"/>
+    <polygon points="620,430 620,350 650,350" fill="rgba(30,60,30,.3)"/>
+  </symbol>
+  <symbol id="art-interior" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+    <line x1="0" y1="0" x2="400" y2="250" stroke="rgba(255,200,140,.07)" stroke-width="1"/>
+    <line x1="800" y1="0" x2="400" y2="250" stroke="rgba(255,200,140,.07)" stroke-width="1"/>
+    <line x1="0" y1="500" x2="400" y2="250" stroke="rgba(255,200,140,.07)" stroke-width="1"/>
+    <line x1="800" y1="500" x2="400" y2="250" stroke="rgba(255,200,140,.07)" stroke-width="1"/>
+    <polygon points="0,500 800,500 650,300 150,300" fill="rgba(140,90,40,.12)"/>
+    <rect x="260" y="80" width="280" height="200" fill="rgba(255,200,120,.1)"/>
+    <line x1="400" y1="80" x2="400" y2="280" stroke="rgba(255,200,120,.15)" stroke-width="2"/>
+    <line x1="260" y1="180" x2="540" y2="180" stroke="rgba(255,200,120,.15)" stroke-width="2"/>
+    <rect x="160" y="360" width="320" height="60" rx="6" fill="rgba(160,110,60,.2)"/>
+    <rect x="150" y="340" width="340" height="30" rx="4" fill="rgba(160,110,60,.18)"/>
+    <ellipse cx="520" cy="330" rx="40" ry="60" fill="rgba(255,200,100,.12)"/>
+    <rect x="510" y="330" width="20" height="80" fill="rgba(180,130,60,.2)"/>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ── TRANSITION STRIPS ───────────────────────────────────────────────────── -->
+<div id="trans-strip">
+  <div class="trans-bar"></div>
+  <div class="trans-bar"></div>
+  <div class="trans-bar"></div>
+  <div class="trans-bar"></div>
+  <div class="trans-bar"></div>
+</div>
+
+<!-- ── MODAL ─────────────────────────────────────────────────────────────────── -->
 <div id="prop-modal">
   <div class="modal-inner">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-gallery">
-      <div class="modal-gallery-main"><img id="modal-img" src="" alt="" referrerpolicy="no-referrer"></div>
+      <div class="modal-gallery-main" id="modal-main-scene"></div>
       <div class="modal-thumbs" id="modal-thumbs"></div>
     </div>
     <div class="modal-body">
-      <div class="modal-prop-type" id="modal-type"></div>
-      <div class="modal-prop-name" id="modal-name"></div>
+      <div class="modal-prop-type"  id="modal-type"></div>
+      <div class="modal-prop-name"  id="modal-name"></div>
       <div style="font-size:13px;color:rgba(250,250,247,.4);letter-spacing:.06em" id="modal-loc"></div>
       <div class="modal-prop-price" id="modal-price"></div>
       <div class="modal-divider"></div>
@@ -281,17 +613,17 @@
       </div>
       <div class="modal-divider"></div>
       <div class="modal-desc" id="modal-desc"></div>
-      <a href="#contact" class="btn" onclick="closeModal()" style="margin-top:8px">
+      <button class="btn" onclick="closeModal();navigate('page-contact')" style="margin-top:8px">
         Schedule Viewing <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- ── NAV ───────────────────────────────────────────────────────────────────── -->
 <nav id="navbar">
-  <a class="nav-logo" href="#hero">
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="STRATA logo mark">
+  <a class="nav-logo" onclick="navigate('page-home')">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
       <rect x="4"  y="5"  width="24" height="4" fill="#C4622D"/>
       <rect x="7"  y="12" width="18" height="4" fill="#E8824A"/>
       <rect x="10" y="19" width="12" height="4" fill="#C9A84C"/>
@@ -300,56 +632,75 @@
     <span class="nav-wordmark">STRATA</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#properties">Properties</a></li>
-    <li><a href="#interiors">Interiors</a></li>
-    <li><a href="#featured">Featured</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a onclick="navigate('page-home')"       data-page="page-home"      >Home</a></li>
+    <li><a onclick="navigate('page-properties')" data-page="page-properties">Properties</a></li>
+    <li><a onclick="navigate('page-featured')"   data-page="page-featured"  >Featured</a></li>
+    <li><a onclick="navigate('page-process')"    data-page="page-process"   >Process</a></li>
+    <li><a onclick="navigate('page-contact')"    data-page="page-contact"   >Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">
+  <button class="nav-cta" onclick="navigate('page-contact')">
     Book a Viewing
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-  </a>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-slides" id="hero-slides">
-    <div class="hero-slide active" id="slide0"></div>
-    <div class="hero-slide" id="slide1"></div>
-    <div class="hero-slide" id="slide2"></div>
-    <div class="hero-slide" id="slide3"></div>
-  </div>
-  <div class="hero-content">
-    <div>
-      <h1 class="hero-headline">
-        <span class="line">The</span>
-        <span class="line">Precision</span>
-        <span class="line">of Living</span>
-      </h1>
-    </div>
-    <div class="hero-right">
-      <div class="hero-tag">Est. 2008 — Premium Real Estate</div>
-      <p class="hero-sub">A vision that transcends property and space, where unmatched craftsmanship inspires elegance and innovation.</p>
-      <div class="hero-scroll"><div class="scroll-line"></div>Scroll to Explore</div>
-    </div>
-  </div>
-  <div class="hero-dots" id="hero-dots">
-    <button class="hero-dot active" onclick="goSlide(0)"></button>
-    <button class="hero-dot" onclick="goSlide(1)"></button>
-    <button class="hero-dot" onclick="goSlide(2)"></button>
-    <button class="hero-dot" onclick="goSlide(3)"></button>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">240+</div><div class="stat-label">Properties</div></div>
-    <div class="stat"><div class="stat-num">18</div><div class="stat-label">Locations</div></div>
-    <div class="stat"><div class="stat-num">$2.4B</div><div class="stat-label">In Sales</div></div>
-  </div>
-</section>
+<!-- ── PAGE INDICATOR ────────────────────────────────────────────────────────── -->
+<div id="page-indicator">
+  <button class="page-pip active" onclick="navigate('page-home')"       title="Home"></button>
+  <button class="page-pip"        onclick="navigate('page-properties')" title="Properties"></button>
+  <button class="page-pip"        onclick="navigate('page-featured')"   title="Featured"></button>
+  <button class="page-pip"        onclick="navigate('page-process')"    title="Process"></button>
+  <button class="page-pip"        onclick="navigate('page-contact')"    title="Contact"></button>
+</div>
 
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-inner" id="marquee-inner">
+<!-- ════════════════════════════════════════════════════════════════════════════
+     PAGE 0 — HOME
+════════════════════════════════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section id="hero">
+    <div class="hero-slides">
+      <div class="hero-slide active">
+        <div class="scene" style="background:linear-gradient(165deg,#4a1e08 0%,#8b3a14 15%,#c4622d 32%,#e8924a 48%,#c46828 62%,#6b2f10 80%,#1a1008 100%)">
+          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
+      </div>
+      <div class="hero-slide">
+        <div class="scene" style="background:linear-gradient(165deg,#0a1828 0%,#0e2a44 20%,#164060 38%,#1e5878 52%,#124060 70%,#0a1828 100%)">
+          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-coast"/></svg><div class="scene-noise"></div></div>
+      </div>
+      <div class="hero-slide">
+        <div class="scene" style="background:linear-gradient(165deg,#0e1520 0%,#1a2535 20%,#243548 38%,#344858 55%,#1e2e40 75%,#0e1520 100%)">
+          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
+      </div>
+      <div class="hero-slide">
+        <div class="scene" style="background:linear-gradient(165deg,#1a0e06 0%,#2e1a0a 20%,#4a2a10 38%,#6a3a18 52%,#3a2010 72%,#1a0e06 100%)">
+          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-interior"/></svg><div class="scene-noise"></div></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-headline">
+          <span class="line">The</span><span class="line">Precision</span><span class="line">of Living</span>
+        </h1>
+      </div>
+      <div class="hero-right">
+        <div class="hero-tag">Est. 2008 — Premium Real Estate</div>
+        <p class="hero-sub">A vision that transcends property and space, where unmatched craftsmanship inspires elegance and innovation.</p>
+        <div class="hero-scroll"><div class="scroll-line"></div>Scroll to Explore</div>
+      </div>
+    </div>
+    <div class="hero-dots" id="hero-dots">
+      <button class="hero-dot active" onclick="goSlide(0)"></button>
+      <button class="hero-dot" onclick="goSlide(1)"></button>
+      <button class="hero-dot" onclick="goSlide(2)"></button>
+      <button class="hero-dot" onclick="goSlide(3)"></button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">240+</div><div class="stat-label">Properties</div></div>
+      <div class="stat"><div class="stat-num">18</div><div class="stat-label">Locations</div></div>
+      <div class="stat"><div class="stat-num">$2.4B</div><div class="stat-label">In Sales</div></div>
+    </div>
+  </section>
+  <div class="marquee-strip"><div class="marquee-inner" id="marquee-inner">
     <div class="marquee-item">Desert Estates<span class="marquee-dot"></span></div>
     <div class="marquee-item">Mountain Retreats<span class="marquee-dot"></span></div>
     <div class="marquee-item">Coastal Villas<span class="marquee-dot"></span></div>
@@ -362,313 +713,431 @@
     <div class="marquee-item">Urban Penthouses<span class="marquee-dot"></span></div>
     <div class="marquee-item">Private Compounds<span class="marquee-dot"></span></div>
     <div class="marquee-item">Architectural Icons<span class="marquee-dot"></span></div>
-  </div>
-</div>
-
-<!-- INTRO -->
-<section id="intro">
-  <div class="intro-grid">
-    <div>
-      <div class="section-label reveal">Our Philosophy</div>
-      <h2 class="intro-headline reveal" style="transition-delay:.1s">Homes Built For<br><em>Extraordinary</em><br>Lives</h2>
-      <div class="intro-accent reveal" style="transition-delay:.15s"></div>
-      <p class="intro-body reveal" style="transition-delay:.2s">STRATA curates the world's finest residential properties — each one a testament to architectural mastery, natural harmony, and the quiet confidence of those who refuse to compromise.</p>
-      <a href="#properties" class="btn reveal" style="transition-delay:.3s">Explore Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="intro-img-wrap reveal-right">
-      <img id="img-intro" src="" alt="Luxury estate" referrerpolicy="no-referrer" loading="lazy">
-      <div class="intro-img-label">House Type A — Desert Series</div>
-    </div>
-  </div>
-</section>
-
-<!-- PHOTO STRIP -->
-<div class="strip-wrap">
-  <div class="photo-strip" id="photo-strip">
-    <div class="strip-item"><img id="strip0" src="" alt="Chef's Kitchen" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Chef's Kitchen</div></div>
-    <div class="strip-item"><img id="strip1" src="" alt="Grand Living Room" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Grand Living Room</div></div>
-    <div class="strip-item"><img id="strip2" src="" alt="Master Suite" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Master Suite</div></div>
-    <div class="strip-item"><img id="strip3" src="" alt="Infinity Pool" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Infinity Pool</div></div>
-    <div class="strip-item"><img id="strip4" src="" alt="Desert Facade" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Desert Facade</div></div>
-    <div class="strip-item"><img id="strip5" src="" alt="Dining Pavilion" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Dining Pavilion</div></div>
-    <div class="strip-item"><img id="strip6" src="" alt="Spa Bath" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Spa Bath</div></div>
-  </div>
-</div>
-
-<!-- PROPERTIES -->
-<section id="properties">
-  <div class="props-header">
-    <div>
-      <div class="section-label reveal" style="color:var(--terra)"><span style="background:var(--terra)"></span>Our Listings</div>
-      <h2 class="props-title reveal" style="transition-delay:.1s">Current<br>Properties</h2>
-    </div>
-    <div class="props-filter reveal">
-      <button class="filter-btn active" onclick="filterProps('all',this)">All</button>
-      <button class="filter-btn" onclick="filterProps('desert',this)">Desert</button>
-      <button class="filter-btn" onclick="filterProps('mountain',this)">Mountain</button>
-      <button class="filter-btn" onclick="filterProps('coastal',this)">Coastal</button>
-    </div>
-  </div>
-  <div class="props-grid" id="props-grid"></div>
-  <div style="text-align:center" class="reveal">
-    <a href="#listings-cta" class="btn" style="margin:0 auto">View All 240+ Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-  </div>
-</section>
-
-<!-- INTERIORS -->
-<section id="interiors">
-  <div class="interiors-header">
-    <div>
-      <div class="section-label reveal">Inside the Walls</div>
-      <h2 class="interiors-title reveal" style="transition-delay:.1s">Life Within<br>These Spaces</h2>
-    </div>
-    <p class="interiors-sub reveal-right">Every room a statement. Every surface chosen with intention.</p>
-  </div>
-  <div class="mosaic reveal">
-    <div class="mosaic-item mosaic-tall"><img id="mos0" src="" alt="Kitchen" referrerpolicy="no-referrer" loading="lazy"><div class="mosaic-label">Open-Plan Kitchen · Solano Residence</div></div>
-    <div class="mosaic-item"><img id="mos1" src="" alt="Living room" referrerpolicy="no-referrer" loading="lazy"><div class="mosaic-label">Great Room · Peak House</div></div>
-    <div class="mosaic-item"><img id="mos2" src="" alt="Bathroom" referrerpolicy="no-referrer" loading="lazy"><div class="mosaic-label">Stone Bath · Casa Quieta</div></div>
-    <div class="mosaic-item"><img id="mos3" src="" alt="Wine cellar" referrerpolicy="no-referrer" loading="lazy"><div class="mosaic-label">Wine Cellar · Mare Blu</div></div>
-    <div class="mosaic-item"><img id="mos4" src="" alt="Terrace" referrerpolicy="no-referrer" loading="lazy"><div class="mosaic-label">Desert Terrace · The Meridian</div></div>
-  </div>
-</section>
-
-<!-- FEATURED -->
-<section id="featured">
-  <div class="featured-bg" id="featured-bg"></div>
-  <div class="featured-content">
-    <div class="reveal-left">
-      <div class="featured-label-top">Property of the Month</div>
-      <h2 class="featured-title">Casa Roja<br>Desert<br>Compound</h2>
-      <p class="featured-sub">An architectural masterwork rising from the Sonoran desert — 6 acres of absolute privacy, brutalist precision, and amber warmth.</p>
-      <div class="featured-specs">
-        <div><div class="featured-spec-val">6</div><div class="featured-spec-key">Bedrooms</div></div>
-        <div><div class="featured-spec-val">8</div><div class="featured-spec-key">Bathrooms</div></div>
-        <div><div class="featured-spec-val">12k</div><div class="featured-spec-key">Sq Ft</div></div>
+  </div></div>
+  <div class="strip-wrap"><div class="photo-strip">
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#2a1808,#5a3010 40%,#8a5028 70%,#3a2010)"><svg class="scene-art" style="opacity:.25" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Chef's Kitchen</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1a1008,#3a2010 40%,#5a3818 70%,#2a1a0a)"><svg class="scene-art" style="opacity:.2" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Grand Living Room</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1520,#182535 40%,#243848 70%,#0e1520)"><svg class="scene-art" style="opacity:.25" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Master Suite</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#061828,#0e2a40 40%,#184860 70%,#081828)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Infinity Pool</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" style="opacity:.28" viewBox="0 0 600 800"><use href="#art-desert"/></svg></div><div class="strip-caption">Desert Facade</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#1e0e06,#3a1a0c 40%,#603020 70%,#2a1208)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 600 800"><use href="#art-interior"/></svg></div><div class="strip-caption">Dining Pavilion</div></div>
+    <div class="strip-item"><div class="scene" style="background:linear-gradient(150deg,#0e1820,#162838 40%,#204050 70%,#0e1820)"><svg class="scene-art" style="opacity:.2" viewBox="0 0 600 800"><use href="#art-coast"/></svg></div><div class="strip-caption">Spa Bath</div></div>
+  </div></div>
+  <section id="intro">
+    <div class="intro-grid">
+      <div>
+        <div class="section-label reveal">Our Philosophy</div>
+        <h2 class="intro-headline reveal" style="transition-delay:.1s">Homes Built For<br><em>Extraordinary</em><br>Lives</h2>
+        <div class="intro-accent reveal" style="transition-delay:.15s"></div>
+        <p class="intro-body reveal" style="transition-delay:.2s">STRATA curates the world's finest residential properties — each one a testament to architectural mastery, natural harmony, and the quiet confidence of those who refuse to compromise.</p>
+        <button class="btn reveal" style="transition-delay:.3s" onclick="navigate('page-properties')">Explore Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
-      <a href="#contact" class="btn">Schedule Private Tour <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="reveal-right" style="text-align:right">
-      <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.4);margin-bottom:8px">Asking Price</div>
-      <div class="featured-price">$14.<span>8M</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="process">
-  <div class="section-label reveal">How It Works</div>
-  <h2 class="process-title reveal" style="transition-delay:.1s">Our Four-Step Process</h2>
-  <div class="process-steps">
-    <div class="process-step reveal" style="transition-delay:0s"><div class="step-num">01</div><div class="step-title">Discovery Call</div><p class="step-desc">We learn your ideal property — location preferences, architectural tastes, lifestyle requirements, and long-term vision.</p></div>
-    <div class="process-step reveal" style="transition-delay:.1s"><div class="step-num">02</div><div class="step-title">Curated Selection</div><p class="step-desc">Our team handpicks 3–5 properties from our exclusive portfolio and off-market network that match your profile.</p></div>
-    <div class="process-step reveal" style="transition-delay:.2s"><div class="step-num">03</div><div class="step-title">Private Viewings</div><p class="step-desc">Experience each property with a dedicated advisor. No crowds, no pressure — just you and your future home.</p></div>
-    <div class="process-step reveal" style="transition-delay:.3s"><div class="step-num">04</div><div class="step-title">Seamless Closing</div><p class="step-desc">Our legal and financial partners handle every detail, ensuring a smooth, discreet transaction from offer to keys.</p></div>
-  </div>
-</section>
-
-<!-- PHOTO DIVIDER -->
-<div class="photo-divider reveal">
-  <img id="img-divider" src="" alt="Mountain estate" referrerpolicy="no-referrer" loading="lazy">
-  <div class="divider-text">
-    "Architecture is the art of how to waste space purposefully — we ensure not a single square foot goes unfelt."
-    <cite>— STRATA Design Philosophy</cite>
-  </div>
-</div>
-
-<!-- TESTIMONIAL -->
-<section id="testimonial">
-  <div class="testimonial-inner reveal">
-    <p class="testimonial-text">"STRATA didn't just find us a house. They found us the place where we finally stopped looking. The process was unlike anything we'd experienced — private, intuitive, and completely without compromise."</p>
-    <div class="testimonial-author"><div class="author-line"></div><span class="author-name">Marcus & Elena Voss — Scottsdale, AZ</span><div class="author-line"></div></div>
-  </div>
-</section>
-
-<!-- COLLECTIONS -->
-<section id="listings-cta" style="padding:0">
-  <div class="listings-header">
-    <div class="section-label reveal" style="color:var(--terra)">Browse Collections</div>
-    <h2 class="cta-headline reveal" style="transition-delay:.1s">Find Your<br>Collection</h2>
-  </div>
-  <div class="cta-grid">
-    <a href="#properties" class="cta-card reveal" style="transition-delay:0s">
-      <img id="cta0" src="" alt="Desert" referrerpolicy="no-referrer" loading="lazy">
-      <div class="cta-card-inner"><div class="cta-card-label">Collection 01</div><div class="cta-card-title">Desert<br>Estates</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-    </a>
-    <a href="#properties" class="cta-card reveal" style="transition-delay:.1s">
-      <img id="cta1" src="" alt="Mountain" referrerpolicy="no-referrer" loading="lazy">
-      <div class="cta-card-inner"><div class="cta-card-label">Collection 02</div><div class="cta-card-title">Mountain<br>Retreats</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-    </a>
-    <a href="#properties" class="cta-card reveal" style="transition-delay:.2s">
-      <img id="cta2" src="" alt="Coastal" referrerpolicy="no-referrer" loading="lazy">
-      <div class="cta-card-inner"><div class="cta-card-label">Collection 03</div><div class="cta-card-title">Coastal<br>Villas</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
-    </a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-grid">
-    <div>
-      <div class="section-label reveal">Get In Touch</div>
-      <h2 class="contact-headline reveal" style="transition-delay:.1s">Begin Your<br><span>Search</span><br>Today</h2>
-      <p class="contact-body reveal" style="transition-delay:.2s">Whether you have a specific property in mind or simply know that you deserve better, we're here to guide you toward the extraordinary.</p>
-      <div class="contact-info reveal" style="transition-delay:.25s">
-        <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>hello@strataproperties.com</div>
-        <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3l2 4-2.5 1.5a11 11 0 005 5L14 12l4 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg></div>+1 (800) STRATA-1</div>
-        <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></div>Scottsdale · Denver · Los Angeles</div>
+      <div class="intro-visual reveal-right">
+        <div class="scene" style="position:absolute;inset:0;background:linear-gradient(155deg,#5a2810 0%,#8b3a18 20%,#b85530 38%,#d4784a 54%,#9a4820 72%,#3a1a08 100%)">
+          <svg class="scene-art" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
+        <div class="intro-img-label">House Type A — Desert Series</div>
       </div>
     </div>
-    <div class="reveal-right">
-      <div class="contact-form">
-        <div class="form-row">
-          <div class="form-field"><label class="form-label">First Name</label><input type="text" class="form-input" placeholder="John"></div>
-          <div class="form-field"><label class="form-label">Last Name</label><input type="text" class="form-input" placeholder="Smith"></div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     PAGE 1 — PROPERTIES
+════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-properties">
+  <section id="properties">
+    <div class="props-header">
+      <div>
+        <div class="section-label reveal">Our Listings</div>
+        <h2 class="props-title reveal" style="transition-delay:.1s">Current<br>Properties</h2>
+      </div>
+      <div class="props-filter reveal">
+        <button class="filter-btn active" onclick="filterProps('all',this)">All</button>
+        <button class="filter-btn" onclick="filterProps('desert',this)">Desert</button>
+        <button class="filter-btn" onclick="filterProps('mountain',this)">Mountain</button>
+        <button class="filter-btn" onclick="filterProps('coastal',this)">Coastal</button>
+      </div>
+    </div>
+    <div class="props-grid" id="props-grid"></div>
+    <div style="text-align:center" class="reveal">
+      <button class="btn" style="margin:0 auto" onclick="navigate('page-featured')">Explore Featured Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>
+  <section id="interiors">
+    <div class="interiors-header">
+      <div>
+        <div class="section-label reveal">Inside the Walls</div>
+        <h2 class="interiors-title reveal" style="transition-delay:.1s">Life Within<br>These Spaces</h2>
+      </div>
+      <p class="interiors-sub reveal-right">Every room a statement. Every surface chosen with intention.</p>
+    </div>
+    <div class="mosaic reveal">
+      <div class="mosaic-item mosaic-tall"><div class="scene" style="background:linear-gradient(160deg,#2a1808,#5a3010 30%,#8a5028 55%,#6a3a18 80%,#2a1808)"><svg class="scene-art" viewBox="0 0 800 600"><use href="#art-interior"/></svg></div><div class="mosaic-label">Open-Plan Kitchen · Solano Residence</div></div>
+      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#1a0e06,#3a1e0c 40%,#5a3018 70%,#2a1808)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-interior"/></svg></div><div class="mosaic-label">Great Room · Peak House</div></div>
+      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#0a1825,#102535 40%,#1a3850 70%,#0a1825)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-coast"/></svg></div><div class="mosaic-label">Stone Bath · Casa Quieta</div></div>
+      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#180e06,#2e1a0a 40%,#4e2e14 70%,#201006)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-interior"/></svg></div><div class="mosaic-label">Wine Cellar · Mare Blu</div></div>
+      <div class="mosaic-item"><div class="scene" style="background:linear-gradient(160deg,#3a1a06,#6a3010 40%,#a05028 70%,#4a2010)"><svg class="scene-art" viewBox="0 0 800 300"><use href="#art-desert"/></svg></div><div class="mosaic-label">Desert Terrace · The Meridian</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     PAGE 2 — FEATURED
+════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-featured">
+  <section id="featured">
+    <div class="featured-bg">
+      <div class="scene" style="background:linear-gradient(155deg,#5a2810 0%,#8b3a18 18%,#b85530 34%,#d47840 48%,#9a4820 68%,#3a1a08 100%)">
+        <svg class="scene-art" style="opacity:.22" viewBox="0 0 800 500"><use href="#art-desert"/></svg><div class="scene-noise"></div></div>
+    </div>
+    <div class="featured-content">
+      <div class="reveal-left">
+        <div class="featured-label-top">Property of the Month</div>
+        <h2 class="featured-title">Casa Roja<br>Desert<br>Compound</h2>
+        <p class="featured-sub">An architectural masterwork rising from the Sonoran desert — 6 acres of absolute privacy, brutalist precision, and amber warmth.</p>
+        <div class="featured-specs">
+          <div><div class="featured-spec-val">6</div><div class="featured-spec-key">Bedrooms</div></div>
+          <div><div class="featured-spec-val">8</div><div class="featured-spec-key">Bathrooms</div></div>
+          <div><div class="featured-spec-val">12k</div><div class="featured-spec-key">Sq Ft</div></div>
         </div>
-        <div class="form-field"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="john@example.com"></div>
-        <div class="form-field"><label class="form-label">Budget Range</label><select class="form-select"><option>$2M – $5M</option><option>$5M – $10M</option><option>$10M – $20M</option><option>$20M+</option></select></div>
-        <div class="form-field"><label class="form-label">Property Type</label><select class="form-select"><option>Desert Estate</option><option>Mountain Retreat</option><option>Coastal Villa</option><option>Urban Penthouse</option><option>Private Compound</option></select></div>
-        <div class="form-field"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us about your dream property..."></textarea></div>
-        <button class="btn">Send Inquiry <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <button class="btn" onclick="navigate('page-contact')">Schedule Private Tour <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="reveal-right" style="text-align:right">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,250,247,.4);margin-bottom:8px">Asking Price</div>
+        <div class="featured-price">$14.<span>8M</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  <section id="testimonial">
+    <div class="testimonial-inner reveal">
+      <p class="testimonial-text">"STRATA didn't just find us a house. They found the place where we finally stopped looking. Private, intuitive, and completely without compromise."</p>
+      <div class="testimonial-author"><div class="author-line"></div><span class="author-name">Marcus & Elena Voss — Scottsdale, AZ</span><div class="author-line"></div></div>
+    </div>
+  </section>
+  <section id="listings-cta" style="padding:0">
+    <div class="listings-header">
+      <div class="section-label reveal">Browse Collections</div>
+      <h2 class="cta-headline reveal" style="transition-delay:.1s">Find Your<br>Collection</h2>
+    </div>
+    <div class="cta-grid">
+      <a class="cta-card reveal" style="transition-delay:0s" onclick="filterProps('desert',document.querySelector('.filter-btn'));navigate('page-properties')">
+        <div class="scene" style="background:linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4601e 50%,#9a4818 75%,#3a1808)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-desert"/></svg></div>
+        <div class="cta-card-inner"><div class="cta-card-label">Collection 01</div><div class="cta-card-title">Desert<br>Estates</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a class="cta-card reveal" style="transition-delay:.1s" onclick="filterProps('mountain',document.querySelectorAll('.filter-btn')[2]);navigate('page-properties')">
+        <div class="scene" style="background:linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-mountain"/></svg></div>
+        <div class="cta-card-inner"><div class="cta-card-label">Collection 02</div><div class="cta-card-title">Mountain<br>Retreats</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+      <a class="cta-card reveal" style="transition-delay:.2s" onclick="filterProps('coastal',document.querySelectorAll('.filter-btn')[3]);navigate('page-properties')">
+        <div class="scene" style="background:linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)"><svg class="scene-art" style="opacity:.22" viewBox="0 0 700 520"><use href="#art-coast"/></svg></div>
+        <div class="cta-card-inner"><div class="cta-card-label">Collection 03</div><div class="cta-card-title">Coastal<br>Villas</div><span class="cta-link">Explore Collection <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+      </a>
+    </div>
+  </section>
+</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand">
-        <svg width="26" height="26" viewBox="0 0 32 32" fill="none"><rect x="4" y="5" width="24" height="4" fill="#C4622D"/><rect x="7" y="12" width="18" height="4" fill="#E8824A"/><rect x="10" y="19" width="12" height="4" fill="#C9A84C"/><rect x="13" y="26" width="6" height="3" fill="#FAFAF7" opacity=".4"/></svg>
-        <span class="footer-brand-word">STRATA</span>
+<!-- ════════════════════════════════════════════════════════════════════════════
+     PAGE 3 — PROCESS
+════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-process">
+  <section id="process">
+    <div class="process-page-header">
+      <div>
+        <div class="section-label reveal">How We Work</div>
+        <h2 class="process-title reveal" style="transition-delay:.1s">Our<br>Four-Step<br>Process</h2>
       </div>
-      <p class="footer-tagline">Precision living for those who demand more from every space they inhabit.</p>
+      <p class="process-intro reveal-right">We believe finding the right home should feel effortless — because we've done the hard work long before you arrived.</p>
     </div>
-    <div>
-      <div class="footer-col-title">Collections</div>
-      <ul class="footer-links"><li><a href="#properties">Desert Estates</a></li><li><a href="#properties">Mountain Retreats</a></li><li><a href="#properties">Coastal Villas</a></li><li><a href="#properties">Urban Penthouses</a></li><li><a href="#properties">Private Compounds</a></li></ul>
+    <div class="process-steps">
+      <div class="process-step reveal" style="transition-delay:0s"><div class="step-num">01</div><div class="step-title">Discovery Call</div><p class="step-desc">We learn your ideal property — location, architectural tastes, lifestyle requirements, and long-term vision.</p></div>
+      <div class="process-step reveal" style="transition-delay:.1s"><div class="step-num">02</div><div class="step-title">Curated Selection</div><p class="step-desc">Our team handpicks 3–5 properties from our exclusive portfolio and off-market network that match your profile exactly.</p></div>
+      <div class="process-step reveal" style="transition-delay:.2s"><div class="step-num">03</div><div class="step-title">Private Viewings</div><p class="step-desc">Experience each property with a dedicated advisor. No crowds, no pressure — just you and your future home.</p></div>
+      <div class="process-step reveal" style="transition-delay:.3s"><div class="step-num">04</div><div class="step-title">Seamless Closing</div><p class="step-desc">Our legal and financial partners handle every detail, ensuring a smooth, discreet transaction from offer to keys.</p></div>
     </div>
-    <div>
-      <div class="footer-col-title">Company</div>
-      <ul class="footer-links"><li><a href="#intro">About STRATA</a></li><li><a href="#process">Our Process</a></li><li><a href="#contact">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+    <div class="process-divider reveal">
+      <div class="scene" style="background:linear-gradient(160deg,#0e1520 0%,#1a2535 25%,#2e4258 50%,#1e3045 75%,#0e1520 100%);position:absolute;inset:0">
+        <svg class="scene-art" style="opacity:.25" viewBox="0 0 800 500"><use href="#art-mountain"/></svg><div class="scene-noise"></div></div>
+      <div class="process-divider-text">
+        "Architecture is the art of how to waste space purposefully — we ensure not a single square foot goes unfelt."
+        <cite>— STRATA Design Philosophy</cite>
+      </div>
     </div>
-    <div>
-      <div class="footer-col-title">Follow</div>
-      <ul class="footer-links"><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">Pinterest</a></li><li><a href="#">YouTube</a></li></ul>
+  </section>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+     PAGE 4 — CONTACT
+════════════════════════════════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-bg">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.12" viewBox="0 0 800 600"><use href="#art-desert"/></svg>
+    <div class="contact-bg-text">STRATA</div>
+  </div>
+  <div id="contact-section">
+    <!-- Top editorial header -->
+    <div class="contact-top">
+      <div>
+        <div class="contact-eyebrow reveal">Get In Touch</div>
+      </div>
+      <div class="reveal" style="transition-delay:.08s">
+        <h2 class="contact-big-title">Your Vision.<br><em>Our Expertise.</em></h2>
+      </div>
+      <p class="contact-tagline reveal-right" style="transition-delay:.12s">
+        Whether you have a specific property in mind or simply know that you deserve better — we're here.
+      </p>
+    </div>
+
+    <!-- Three contact pillars -->
+    <div class="contact-pillars reveal" style="transition-delay:.18s">
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+        <div class="pillar-label">Email</div>
+        <div class="pillar-value">hello@strataproperties.com</div>
+        <div class="pillar-sub">Response within 2 hours</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3l2 4-2.5 1.5a11 11 0 005 5L14 12l4 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg></div>
+        <div class="pillar-label">Direct Line</div>
+        <div class="pillar-value">+1 (800) STRATA-1</div>
+        <div class="pillar-sub">Mon–Sat, 8am–8pm</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></div>
+        <div class="pillar-label">Offices</div>
+        <div class="pillar-value">Scottsdale · Denver · LA</div>
+        <div class="pillar-sub">Private viewings available</div>
+      </div>
+    </div>
+
+    <!-- Horizontal strip form -->
+    <div class="contact-form-wrap reveal" style="transition-delay:.24s">
+      <div class="form-strip">
+        <div class="form-field-block">
+          <div class="field-label">First Name</div>
+          <input type="text" class="form-input" placeholder="John">
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Last Name</div>
+          <input type="text" class="form-input" placeholder="Smith">
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Email Address</div>
+          <input type="email" class="form-input" placeholder="john@example.com">
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Phone</div>
+          <input type="tel" class="form-input" placeholder="+1 (555) 000-0000">
+        </div>
+      </div>
+      <div class="form-strip">
+        <div class="form-field-block">
+          <div class="field-label">Budget Range</div>
+          <select class="form-select">
+            <option>$2M – $5M</option><option>$5M – $10M</option>
+            <option>$10M – $20M</option><option>$20M+</option>
+          </select>
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Property Type</div>
+          <select class="form-select">
+            <option>Desert Estate</option><option>Mountain Retreat</option>
+            <option>Coastal Villa</option><option>Urban Penthouse</option><option>Private Compound</option>
+          </select>
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Preferred Location</div>
+          <select class="form-select">
+            <option>Arizona</option><option>Colorado</option>
+            <option>California</option><option>Wyoming</option><option>Flexible</option>
+          </select>
+        </div>
+        <div class="form-field-block">
+          <div class="field-label">Timeline</div>
+          <select class="form-select">
+            <option>Within 3 months</option><option>3–6 months</option>
+            <option>6–12 months</option><option>No rush</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-strip form-strip-wide">
+        <div class="form-field-block form-textarea-block" style="grid-column:span 2">
+          <div class="field-label">Tell us about your ideal property</div>
+          <textarea class="form-textarea" placeholder="Describe your vision — architecture style, must-haves, lifestyle needs..."></textarea>
+        </div>
+      </div>
+      <div class="contact-submit-row">
+        <div class="submit-message">We'll personally review your inquiry and respond within 2 hours.</div>
+        <button class="btn-submit">
+          Send Inquiry
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
   </div>
-  <div class="footer-bottom">
+
+  <!-- Contact footer -->
+  <div class="contact-footer-strip">
+    <div class="contact-footer-logo">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect x="4" y="5" width="24" height="4" fill="#C4622D"/><rect x="7" y="12" width="18" height="4" fill="#E8824A"/><rect x="10" y="19" width="12" height="4" fill="#C9A84C"/><rect x="13" y="26" width="6" height="3" fill="#FAFAF7" opacity=".4"/></svg>
+      <span class="contact-footer-word">STRATA</span>
+    </div>
     <span>© 2026 STRATA Properties. All rights reserved.</span>
     <span>Privacy · Terms · Sitemap</span>
   </div>
-</footer>
+</div>
 
 <script>
-// ─── IMAGE CATALOG ──────────────────────────────────────────────────────────
-// Pexels CDN — no API key needed, open hotlinking policy
-const PX = 'https://images.pexels.com/photos/';
-const Q  = '/pexels-photo-';
-const S  = '.jpeg?auto=compress&cs=tinysrgb&fit=crop&';
+// ═══════════════════════════════════════════════
+// SCENE HELPER
+// ═══════════════════════════════════════════════
+function makeScene(gradient,artId,opacity){
+  return `<div class="scene" style="background:${gradient};position:absolute;inset:0">
+    <svg class="scene-art" style="opacity:${opacity||.22}" viewBox="0 0 800 500"><use href="#${artId}"/></svg>
+    <div class="scene-noise"></div></div>`;
+}
 
-function px(id, w, h){ return `${PX}${id}${Q}${id}${S}w=${w}&h=${h}`; }
+// ═══════════════════════════════════════════════
+// PAGE NAVIGATION
+// ═══════════════════════════════════════════════
+const PAGES = ['page-home','page-properties','page-featured','page-process','page-contact'];
+let currentPage = 'page-home';
+let isTransitioning = false;
 
-// Exterior / hero
-const IMG = {
-  hero0   : px(1732414, 1800, 1000),   // modern white house exterior
-  hero1   : px(2119714, 1800, 1000),   // desert modern villa
-  hero2   : px(1396122, 1800, 1000),   // luxury pool home
-  hero3   : px(2724749, 1800, 1000),   // warm-toned modern home
-
-  // intro + featured
-  intro   : px(1396132, 800,  1000),   // luxury facade
-  featured: px(280229,  1800, 1000),   // dramatic exterior
-
-  // photo strip (interiors/details)
-  strip0  : px(1080721, 600,  800),    // modern kitchen
-  strip1  : px(276724,  600,  800),    // living room
-  strip2  : px(271816,  600,  800),    // bedroom
-  strip3  : px(261102,  600,  800),    // pool/terrace
-  strip4  : px(259950,  600,  800),    // interior living
-  strip5  : px(1457842, 600,  800),    // dining
-  strip6  : px(164595,  600,  800),    // luxury bath
-
-  // interiors mosaic
-  mos0    : px(1080721, 900,  600),    // kitchen tall
-  mos1    : px(276724,  600,  300),    // living room
-  mos2    : px(164595,  600,  300),    // bath
-  mos3    : px(1457842, 600,  300),    // dining
-  mos4    : px(259950,  600,  300),    // living/lounge
-
-  // divider
-  divider : px(1643384, 1800, 800),    // estate exterior
-
-  // collection cards
-  cta0    : px(2724749, 700,  520),    // desert
-  cta1    : px(1571460, 700,  520),    // mountain
-  cta2    : px(462024,  700,  520),    // coastal
-
-  // property cards + modal galleries
-  p1a: px(1732414,800,600), p1b: px(1080721,800,600), p1c: px(259950,800,600),
-  p2a: px(1449158,800,600), p2b: px(276724,800,600),  p2c: px(1571460,800,600),
-  p3a: px(1396122,800,600), p3b: px(261102,800,600),  p3c: px(462024,800,600),
-  p4a: px(2724749,800,600), p4b: px(164595,800,600),  p4c: px(1457842,800,600),
-  p5a: px(2119714,800,600), p5b: px(271816,800,600),  p5c: px(1643384,800,600),
-  p6a: px(280229, 800,600), p6b: px(259950,800,600),  p6c: px(462024,800,600),
+// Transition type per ordered pair
+const TRANS = {
+  'page-home->page-properties':   {out:'exit-rise',   in:'enter-rise',    strip:true},
+  'page-properties->page-home':   {out:'exit-drop',   in:'enter-drop',    strip:true},
+  'page-properties->page-featured':{out:'exit-slide-l',in:'enter-slide-l', strip:false},
+  'page-featured->page-properties':{out:'exit-slide-r',in:'enter-slide-r', strip:false},
+  'page-featured->page-process':  {out:'exit-curtain',in:'enter-curtain',  strip:false},
+  'page-process->page-featured':  {out:'exit-curtain',in:'enter-curtain',  strip:false},
+  'page-process->page-contact':   {out:'exit-radial', in:'enter-radial',   strip:false},
+  'page-contact->page-process':   {out:'exit-radial', in:'enter-radial',   strip:false},
 };
+function getDefaultTrans(fromIdx,toIdx){
+  return toIdx>fromIdx
+    ? {out:'exit-slide-l',in:'enter-slide-l',strip:false}
+    : {out:'exit-slide-r',in:'enter-slide-r',strip:false};
+}
 
-// ─── ASSIGN IMAGES ──────────────────────────────────────────────────────────
-function setImg(id, src){ const el=document.getElementById(id); if(el) el.src=src; }
-function setBg(id, src){ const el=document.getElementById(id); if(el) el.style.backgroundImage=`url('${src}')`; }
+function navigate(toId){
+  if(toId===currentPage||isTransitioning) return;
+  isTransitioning=true;
 
-// Hero slides (CSS background)
-setBg('slide0', IMG.hero0); setBg('slide1', IMG.hero1);
-setBg('slide2', IMG.hero2); setBg('slide3', IMG.hero3);
+  const fromId = currentPage;
+  const fromEl = document.getElementById(fromId);
+  const toEl   = document.getElementById(toId);
+  const key    = `${fromId}->${toId}`;
+  const fromIdx= PAGES.indexOf(fromId);
+  const toIdx  = PAGES.indexOf(toId);
+  const t      = TRANS[key]||getDefaultTrans(fromIdx,toIdx);
+  const speed  = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--page-speed'))*1000 || 650;
 
-// Misc images
-setImg('img-intro',   IMG.intro);
-setImg('img-divider', IMG.divider);
-setBg('featured-bg',  IMG.featured);
+  // strip transition
+  if(t.strip){
+    const strip=document.getElementById('trans-strip');
+    strip.classList.add('sweep');
+    setTimeout(()=>strip.classList.remove('sweep'),900);
+  }
 
-// Photo strip
-for(let i=0;i<7;i++) setImg('strip'+i, IMG['strip'+i]);
+  // exit current
+  fromEl.classList.add(t.out);
 
-// Mosaic interiors
-for(let i=0;i<5;i++) setImg('mos'+i, IMG['mos'+i]);
+  // prepare incoming (visible but offscreen/clipped)
+  toEl.style.visibility='visible';
+  toEl.classList.add(t.in);
 
-// Collection CTA cards
-for(let i=0;i<3;i++) setImg('cta'+i, IMG['cta'+i]);
+  setTimeout(()=>{
+    // cleanup from
+    fromEl.classList.remove('active',t.out);
+    fromEl.style.visibility='hidden';
+    fromEl.scrollTop=0;
 
-// ─── PROPERTIES DATA ────────────────────────────────────────────────────────
-const properties = [
-  {id:1,type:'Desert Estate',  name:'Solano Residence',location:'Scottsdale, AZ',price:'$8.4M', beds:5,baths:6,sqft:'9,200', cat:'desert',
-   imgs:[IMG.p1a,IMG.p1b,IMG.p1c],
-   desc:'A masterclass in desert modernism. Whitewashed walls cut against amber stone cliffs. Four pavilions connected by glass corridors, each framing a different desert view.'},
-  {id:2,type:'Mountain Retreat',name:'Peak House',       location:'Aspen, CO',    price:'$11.2M',beds:6,baths:7,sqft:'11,400',cat:'mountain',
-   imgs:[IMG.p2a,IMG.p2b,IMG.p2c],
-   desc:'Cantilevered above a 9,000ft ridge, Peak House redefines alpine living. Floor-to-ceiling glass, radiant concrete floors, and a cedar sauna overlooking three mountain ranges.'},
-  {id:3,type:'Coastal Villa',  name:'Mare Blu',          location:'Malibu, CA',   price:'$18.7M',beds:5,baths:5,sqft:'7,800', cat:'coastal',
-   imgs:[IMG.p3a,IMG.p3b,IMG.p3c],
-   desc:'Perched above the Pacific, Mare Blu is pure California luxury. Infinity pool, outdoor kitchen, wine cave, and 180° ocean views from every living space.'},
-  {id:4,type:'Desert Compound',name:'Casa Quieta',       location:'Sedona, AZ',   price:'$6.1M', beds:4,baths:4,sqft:'5,600', cat:'desert',
-   imgs:[IMG.p4a,IMG.p4b,IMG.p4c],
-   desc:'Nestled between red rock formations, Casa Quieta is a sanctuary. Adobe construction, reclaimed wood beams, and courtyards that capture the desert light at every hour.'},
-  {id:5,type:'Mountain Estate',name:'Timber & Stone',    location:'Jackson, WY',  price:'$9.9M', beds:7,baths:8,sqft:'13,000',cat:'mountain',
-   imgs:[IMG.p5a,IMG.p5b,IMG.p5c],
-   desc:'Anchored by hand-hewn timber and local quarry stone, this Jackson Hole estate is a monument to the American West. Barn, guesthouse, and 40 private acres included.'},
-  {id:6,type:'Coastal Estate', name:'The Meridian',      location:'Santa Barbara',price:'$22.5M',beds:8,baths:9,sqft:'15,200',cat:'coastal',
-   imgs:[IMG.p6a,IMG.p6b,IMG.p6c],
-   desc:'The Meridian sits on a point where the Santa Ynez Mountains meet the Pacific. Oceanfront compound with two guest houses, a private pier, and a rooftop observatory.'},
+    // activate to
+    toEl.classList.remove(t.in);
+    toEl.classList.add('active');
+    toEl.style.visibility='visible';
+
+    currentPage=toId;
+    isTransitioning=false;
+    updateNav(toId);
+    // re-trigger reveals on new page
+    setTimeout(()=>{observeReveal();},60);
+  }, speed+60);
+}
+
+function updateNav(pageId){
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.page===pageId);
+  });
+  document.querySelectorAll('.page-pip').forEach((pip,i)=>{
+    pip.classList.toggle('active', PAGES[i]===pageId);
+  });
+  // Adjust nav scrolled state
+  const activeEl=document.getElementById(pageId);
+  if(activeEl) activeEl.addEventListener('scroll',onPageScroll,{passive:true});
+}
+
+function onPageScroll(){
+  const activeEl=document.getElementById(currentPage);
+  const scrolled=activeEl&&activeEl.scrollTop>60;
+  document.getElementById('navbar').classList.toggle('scrolled',scrolled);
+}
+
+// Each page scroll updates nav
+PAGES.forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('scroll',()=>{
+    if(id!==currentPage)return;
+    document.getElementById('navbar').classList.toggle('scrolled',el.scrollTop>60);
+  },{passive:true});
+});
+
+// ═══════════════════════════════════════════════
+// HERO SLIDESHOW
+// ═══════════════════════════════════════════════
+let curSlide=0;
+const slides=document.querySelectorAll('.hero-slide');
+const dots=document.querySelectorAll('.hero-dot');
+function goSlide(n){
+  slides[curSlide].classList.remove('active');dots[curSlide].classList.remove('active');
+  curSlide=n;
+  slides[curSlide].classList.add('active');dots[curSlide].classList.add('active');
+}
+setInterval(()=>goSlide((curSlide+1)%slides.length),5000);
+
+// ═══════════════════════════════════════════════
+// PROPERTY DATA
+// ═══════════════════════════════════════════════
+const D={
+  d1:['linear-gradient(155deg,#4a1e08,#8b3814 25%,#c4621e 50%,#9a4818 75%,#3a1808)','art-desert'],
+  c1:['linear-gradient(155deg,#081828,#102840 25%,#1a4860 50%,#123848 75%,#081828)','art-coast'],
+  m1:['linear-gradient(155deg,#0e1520,#1a2838 25%,#2c4060 50%,#1e3050 75%,#0e1520)','art-mountain'],
+  d2:['linear-gradient(155deg,#3a1808,#6a3010 25%,#a04820 50%,#7a3818 75%,#2a1206)','art-desert'],
+  m2:['linear-gradient(155deg,#121820,#1e2c40 25%,#2a3e58 50%,#1e2c40 75%,#121820)','art-mountain'],
+  c2:['linear-gradient(155deg,#061422,#0e2438 25%,#1a3e58 50%,#103048 75%,#061422)','art-coast'],
+  i1:['linear-gradient(155deg,#1a0e06,#3a1c0c 35%,#5a3018 65%,#2a1408)','art-interior'],
+  i2:['linear-gradient(155deg,#100c06,#281808 35%,#402a10 65%,#201006)','art-interior'],
+};
+const properties=[
+  {id:1,type:'Desert Estate',  name:'Solano Residence',location:'Scottsdale, AZ', price:'$8.4M', beds:5,baths:6,sqft:'9,200', cat:'desert',  scenes:[D.d1,D.i1,D.i2],desc:'A masterclass in desert modernism. Whitewashed walls cut against amber stone cliffs. Four pavilions connected by glass corridors, each framing a different desert view.'},
+  {id:2,type:'Mountain Retreat',name:'Peak House',      location:'Aspen, CO',     price:'$11.2M',beds:6,baths:7,sqft:'11,400',cat:'mountain', scenes:[D.m1,D.i1,D.i2],desc:'Cantilevered above a 9,000ft ridge. Floor-to-ceiling glass, radiant concrete floors, and a cedar sauna overlooking three mountain ranges.'},
+  {id:3,type:'Coastal Villa',  name:'Mare Blu',         location:'Malibu, CA',    price:'$18.7M',beds:5,baths:5,sqft:'7,800', cat:'coastal',  scenes:[D.c1,D.i1,D.i2],desc:'Perched above the Pacific. Infinity pool, outdoor kitchen, wine cave, and 180° ocean views from every living space.'},
+  {id:4,type:'Desert Compound',name:'Casa Quieta',      location:'Sedona, AZ',    price:'$6.1M', beds:4,baths:4,sqft:'5,600', cat:'desert',   scenes:[D.d2,D.i2,D.i1],desc:'Nestled between red rock formations. Adobe construction, reclaimed wood beams, and courtyards that capture the desert light at every hour.'},
+  {id:5,type:'Mountain Estate',name:'Timber & Stone',   location:'Jackson, WY',   price:'$9.9M', beds:7,baths:8,sqft:'13,000',cat:'mountain', scenes:[D.m2,D.i1,D.i2],desc:'Anchored by hand-hewn timber and local quarry stone. Barn, guesthouse, and 40 private acres included.'},
+  {id:6,type:'Coastal Estate', name:'The Meridian',     location:'Santa Barbara',  price:'$22.5M',beds:8,baths:9,sqft:'15,200',cat:'coastal',  scenes:[D.c2,D.i2,D.i1],desc:'Where the Santa Ynez Mountains meet the Pacific. Oceanfront compound with two guest houses, a private pier, and a rooftop observatory.'},
 ];
 
-// ─── PROPERTY GRID ──────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+// PROPERTY GRID
+// ═══════════════════════════════════════════════
 let activeFilter='all';
 function renderProps(){
   const grid=document.getElementById('props-grid');
   const list=activeFilter==='all'?properties:properties.filter(p=>p.cat===activeFilter);
   grid.innerHTML=list.map((p,i)=>`
     <div class="prop-card reveal" style="transition-delay:${i*.08}s" onclick="openModal(${p.id})">
-      <img src="${p.imgs[0]}" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy">
+      ${makeScene(p.scenes[0][0],p.scenes[0][1],.25)}
       <div class="prop-overlay">
         <div class="prop-type">${p.type}</div>
         <div class="prop-name">${p.name}</div>
@@ -680,81 +1149,69 @@ function renderProps(){
         <div class="prop-arrow"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
     </div>`).join('');
-  setTimeout(observeReveal, 50);
+  setTimeout(observeReveal,50);
 }
 function filterProps(cat,btn){
   activeFilter=cat;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
   renderProps();
 }
 
-// ─── MODAL ───────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════
 function openModal(id){
-  const p=properties.find(x=>x.id===id); if(!p) return;
-  setImg('modal-img', p.imgs[0]);
-  document.getElementById('modal-type').textContent  = p.type;
-  document.getElementById('modal-name').textContent  = p.name;
-  document.getElementById('modal-loc').textContent   = p.location;
-  document.getElementById('modal-price').textContent = p.price;
-  document.getElementById('modal-beds').textContent  = p.beds;
-  document.getElementById('modal-baths').textContent = p.baths;
-  document.getElementById('modal-sqft').textContent  = p.sqft;
-  document.getElementById('modal-desc').textContent  = p.desc;
-  document.getElementById('modal-thumbs').innerHTML  = p.imgs.map((src,i)=>
-    `<div class="modal-thumb${i===0?' active':''}" onclick="switchImg('${src}',this)">
-       <img src="${src}" referrerpolicy="no-referrer" alt="">
-     </div>`).join('');
+  const p=properties.find(x=>x.id===id);if(!p)return;
+  renderModalScene(p,0);
+  document.getElementById('modal-type').textContent =p.type;
+  document.getElementById('modal-name').textContent =p.name;
+  document.getElementById('modal-loc').textContent  =p.location;
+  document.getElementById('modal-price').textContent=p.price;
+  document.getElementById('modal-beds').textContent =p.beds;
+  document.getElementById('modal-baths').textContent=p.baths;
+  document.getElementById('modal-sqft').textContent =p.sqft;
+  document.getElementById('modal-desc').textContent =p.desc;
+  const names=['Exterior','Living','Suite'];
+  document.getElementById('modal-thumbs').innerHTML=p.scenes.map((sc,i)=>`
+    <div class="modal-thumb${i===0?' active':''}" onclick="switchModalScene(${id},${i})" style="position:relative">
+      ${makeScene(sc[0],sc[1],.22)}
+      <div style="position:absolute;bottom:3px;left:4px;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(250,250,247,.7);z-index:2">${names[i]}</div>
+    </div>`).join('');
   document.getElementById('prop-modal').classList.add('open');
-  document.body.style.overflow='hidden';
 }
-function switchImg(src,thumb){
-  setImg('modal-img',src);
-  document.querySelectorAll('.modal-thumb').forEach(t=>t.classList.remove('active'));
-  thumb.classList.add('active');
+function renderModalScene(p,idx){
+  const m=document.getElementById('modal-main-scene');
+  m.style.cssText='position:relative;height:100%';
+  m.innerHTML=makeScene(p.scenes[idx][0],p.scenes[idx][1],.25);
 }
-function closeModal(){
-  document.getElementById('prop-modal').classList.remove('open');
-  document.body.style.overflow='';
+function switchModalScene(propId,idx){
+  const p=properties.find(x=>x.id===propId);
+  renderModalScene(p,idx);
+  document.querySelectorAll('.modal-thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
 }
-document.getElementById('prop-modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+function closeModal(){document.getElementById('prop-modal').classList.remove('open')}
+document.getElementById('prop-modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
 
-// ─── HERO SLIDESHOW ──────────────────────────────────────────────────────────
-let curSlide=0;
-const slides=document.querySelectorAll('.hero-slide');
-const dots=document.querySelectorAll('.hero-dot');
-function goSlide(n){
-  slides[curSlide].classList.remove('active'); dots[curSlide].classList.remove('active');
-  curSlide=n;
-  slides[curSlide].classList.add('active');    dots[curSlide].classList.add('active');
-}
-setInterval(()=>goSlide((curSlide+1)%slides.length), 5000);
-
-// ─── NAV SCROLL ──────────────────────────────────────────────────────────────
-window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
-},{passive:true});
-
-// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+// SCROLL REVEAL (per page)
+// ═══════════════════════════════════════════════
 function observeReveal(){
-  const sel='.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.intro-img-wrap:not(.visible),.intro-accent:not(.visible)';
+  const sel='.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.intro-accent:not(.visible)';
   const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
   },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll(sel).forEach(el=>obs.observe(el));
 }
 
-// ─── PARALLAX ────────────────────────────────────────────────────────────────
-window.addEventListener('scroll',()=>{
-  const fb=document.getElementById('featured-bg');
-  if(fb){ const r=fb.parentElement.getBoundingClientRect(); fb.style.transform=`translateY(${r.top*.18}px)`; }
-},{passive:true});
-
-// ─── INIT ────────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
 window.addEventListener('load',()=>{
   document.getElementById('hero').classList.add('loaded');
   renderProps();
   observeReveal();
+  updateNav('page-home');
   const mi=document.getElementById('marquee-inner');
   mi.innerHTML+=mi.innerHTML;
 });
