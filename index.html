@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STRATA — Luxury Properties</title>
+<title>STRATA Luxury Properties</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -124,7 +124,7 @@ nav.light-nav{/* for cream pages */}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
 
 /* ═══════════════════════════════════════════════
-   PAGE 0 — HOME
+   PAGE 0 HOME
 ═══════════════════════════════════════════════ */
 #page-home{background:var(--ink)}
 
@@ -188,7 +188,7 @@ nav.light-nav{/* for cream pages */}
 .intro-accent.visible{transform:scaleY(1)}
 
 /* ═══════════════════════════════════════════════
-   PAGE 1 — PROPERTIES
+   PAGE 1 PROPERTIES
 ═══════════════════════════════════════════════ */
 #page-properties{background:var(--cream);color:var(--ink)}
 
@@ -227,7 +227,7 @@ nav.light-nav{/* for cream pages */}
 .mosaic-label{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(26,22,18,.82));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.7);z-index:2}
 
 /* ═══════════════════════════════════════════════
-   PAGE 2 — FEATURED
+   PAGE 2 FEATURED
 ═══════════════════════════════════════════════ */
 #page-featured{background:var(--ink)}
 
@@ -274,7 +274,7 @@ nav.light-nav{/* for cream pages */}
 .cta-card:hover .cta-link svg{transform:translateX(4px)}
 
 /* ═══════════════════════════════════════════════
-   PAGE 3 — PROCESS
+   PAGE 3 PROCESS
 ═══════════════════════════════════════════════ */
 #page-process{background:var(--ink-soft)}
 #process{padding:120px 48px}
@@ -297,7 +297,7 @@ nav.light-nav{/* for cream pages */}
 .process-divider-text cite{display:block;margin-top:22px;font-style:normal;font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light)}
 
 /* ═══════════════════════════════════════════════
-   PAGE 4 — CONTACT  (unique redesign)
+   PAGE 4 CONTACT  (unique redesign)
 ═══════════════════════════════════════════════ */
 #page-contact{
   background:var(--ink);
@@ -380,7 +380,7 @@ nav.light-nav{/* for cream pages */}
 .pillar-value{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:600;color:var(--white);letter-spacing:.04em}
 .pillar-sub{font-size:12px;color:rgba(250,250,247,.4);letter-spacing:.04em}
 
-/* Form — horizontal strip design */
+/* Form horizontal strip design */
 .contact-form-wrap{
   flex:1;display:flex;flex-direction:column;gap:0;
 }
@@ -492,7 +492,69 @@ nav.light-nav{/* for cream pages */}
    RESPONSIVE
 ═══════════════════════════════════════════════ */
 /* ═══════════════════════════════════════════════
-   HOME EXTRAS — NUMBERS BAND
+   HOME — BRAND STORY PANEL
+═══════════════════════════════════════════════ */
+.brand-story-section{background:var(--ink);padding:100px 48px}
+.brand-story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.brand-story-images{display:grid;grid-template-columns:3fr 2fr;gap:3px;height:560px}
+.bsi-main{overflow:hidden;position:relative;height:100%}
+.bsi-main img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bsi-main:hover img{transform:scale(1.04)}
+.bsi-stack{display:grid;grid-template-rows:1fr 1fr;gap:3px;height:100%}
+.bsi-small{overflow:hidden;position:relative}
+.bsi-small img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.bsi-small:hover img{transform:scale(1.06)}
+.brand-story-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,3.5vw,52px);font-weight:800;text-transform:uppercase;line-height:.94;margin-bottom:28px;margin-top:8px}
+.brand-story-body{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:rgba(250,250,247,.68);line-height:1.75;margin-bottom:20px}
+.brand-story-values{display:flex;flex-direction:column;gap:20px;margin-top:36px;padding-top:36px;border-top:1px solid rgba(250,250,247,.08)}
+.brand-value{display:flex;align-items:flex-start;gap:16px}
+.brand-value-icon{width:38px;height:38px;border:1px solid rgba(196,98,45,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.brand-value-icon svg{width:16px;height:16px}
+.brand-value-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.brand-value-desc{font-size:13px;color:rgba(250,250,247,.45);letter-spacing:.03em}
+/* ═══════════════════════════════════════════════
+   HOME — MOSAIC QUOTE SECTION
+═══════════════════════════════════════════════ */
+.mosaic-quote-section{background:var(--ink-soft);padding:0}
+.mosaic-quote-grid{display:grid;grid-template-columns:1fr 2fr 1fr;gap:3px;min-height:600px}
+.mq-col-left,.mq-col-right{display:flex;flex-direction:column;gap:3px}
+.mq-col-center{display:flex;flex-direction:column;gap:3px}
+.mq-img-tall{flex:1;overflow:hidden;position:relative;min-height:300px}
+.mq-img-tall img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.mq-img-tall:hover img{transform:scale(1.04)}
+.mq-img-wide{height:320px;overflow:hidden;position:relative}
+.mq-img-wide img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.mq-img-wide:hover img{transform:scale(1.04)}
+.mq-img-sm{flex:1;overflow:hidden;position:relative;min-height:140px}
+.mq-img-sm img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.mq-img-sm:hover img{transform:scale(1.06)}
+.mq-img-label{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(26,22,18,.82));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.7)}
+.mq-pullquote{flex:1;background:var(--terra);padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.mq-quote-mark{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;line-height:.6;color:rgba(255,255,255,.3)}
+.mq-quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2vw,24px);font-weight:300;font-style:italic;color:rgba(255,255,255,.95);line-height:1.55}
+.mq-quote-author{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.65);padding-top:16px;border-top:1px solid rgba(255,255,255,.2)}
+/* ═══════════════════════════════════════════════
+   HOME — LOCATIONS SECTION
+═══════════════════════════════════════════════ */
+.locations-section{background:var(--ink);padding:100px 48px}
+.locations-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.locations-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,3.5vw,52px);font-weight:800;text-transform:uppercase;line-height:.94;margin-bottom:24px;margin-top:8px}
+.locations-body{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:rgba(250,250,247,.65);line-height:1.75;margin-bottom:32px}
+.locations-list{display:flex;flex-direction:column;gap:0}
+.location-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(250,250,247,.06)}
+.loc-dot{width:6px;height:6px;background:var(--terra);border-radius:50%;flex-shrink:0}
+.loc-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;flex:1}
+.loc-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,247,.35)}
+.loc-img-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:3px}
+.loc-img-a{grid-column:span 2;height:280px;overflow:hidden;position:relative}
+.loc-img-a img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.loc-img-a:hover img{transform:scale(1.04)}
+.loc-img-b,.loc-img-c{height:200px;overflow:hidden;position:relative}
+.loc-img-b img,.loc-img-c img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.loc-img-b:hover img,.loc-img-c:hover img{transform:scale(1.06)}
+.loc-img-label{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(transparent,rgba(26,22,18,.8));font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,250,247,.75)}
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS NUMBERS BAND
 ═══════════════════════════════════════════════ */
 #numbers-band{
   background:var(--cream);color:var(--ink);
@@ -524,7 +586,7 @@ nav.light-nav{/* for cream pages */}
 }
 
 /* ═══════════════════════════════════════════════
-   HOME EXTRAS — SERVICES GRID
+   HOME EXTRAS SERVICES GRID
 ═══════════════════════════════════════════════ */
 #services{background:var(--ink-soft);padding:100px 48px}
 .services-head{
@@ -572,7 +634,7 @@ nav.light-nav{/* for cream pages */}
 }
 
 /* ═══════════════════════════════════════════════
-   HOME EXTRAS — ABOUT / TEAM
+   HOME EXTRAS ABOUT / TEAM
 ═══════════════════════════════════════════════ */
 #about{background:var(--ink);padding:100px 48px}
 .about-top{
@@ -741,7 +803,7 @@ nav.light-nav{/* for cream pages */}
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — MOBILE FIRST
+   RESPONSIVE MOBILE FIRST
 ═══════════════════════════════════════════════ */
 @media(max-width:900px){
   /* Nav */
@@ -833,6 +895,181 @@ nav.light-nav{/* for cream pages */}
 }
 
 @media(max-width:480px){
+  .hero-headline{font-size:clamp(48px,13vw,70px)}
+  #numbers-band{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+  .props-grid{grid-template-columns:1fr}
+  .marquee-inner{gap:36px}
+  .form-strip{grid-template-columns:1fr}
+}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — PHOTO BENTO GRID
+═══════════════════════════════════════════════ */
+#bento{background:var(--ink);padding:0 3px 3px}
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:260px 260px;
+  gap:3px;
+}
+.bento-cell{position:relative;overflow:hidden;background:var(--ink-soft)}
+.bento-cell img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,1,.3,1),filter .9s ease;filter:brightness(.82)}
+.bento-cell:hover img{transform:scale(1.05);filter:brightness(.65)}
+.bento-wide{grid-column:span 2}
+.bento-tall{grid-row:span 2}
+.bento-tag{
+  position:absolute;bottom:14px;left:16px;z-index:2;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(250,250,247,.75);
+  background:rgba(26,22,18,.5);backdrop-filter:blur(4px);
+  padding:5px 10px;
+}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — BRAND STORY FULL PANEL
+═══════════════════════════════════════════════ */
+#brand-story{
+  background:var(--cream);color:var(--ink);
+  padding:100px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.brand-story-img{position:relative;overflow:hidden;height:560px}
+.brand-story-img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.brand-story-img:hover img{transform:scale(1.03)}
+.brand-story-img-badge{
+  position:absolute;bottom:24px;right:24px;
+  background:var(--terra);color:var(--white);
+  padding:16px 20px;text-align:center;
+}
+.badge-num{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;line-height:1}
+.badge-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-top:2px;opacity:.85}
+.brand-story-text{display:flex;flex-direction:column;gap:32px}
+.brand-story-kicker{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--terra);display:flex;align-items:center;gap:12px;
+}
+.brand-story-kicker::before{content:'';width:28px;height:1px;background:var(--terra)}
+.brand-story-h{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(38px,5vw,58px);font-weight:900;
+  text-transform:uppercase;line-height:.92;
+}
+.brand-story-p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;color:rgba(26,22,18,.7);line-height:1.75;
+}
+.brand-story-facts{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid rgba(26,22,18,.1);
+  padding-top:32px;
+}
+.brand-fact{padding:20px 0;border-bottom:1px solid rgba(26,22,18,.08)}
+.brand-fact:nth-child(odd){padding-right:24px;border-right:1px solid rgba(26,22,18,.08)}
+.brand-fact:nth-child(even){padding-left:24px}
+.brand-fact-val{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:32px;font-weight:800;color:var(--terra);line-height:1;
+}
+.brand-fact-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warm-gray);margin-top:4px}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — LOCATION STRIP
+═══════════════════════════════════════════════ */
+#locations{
+  background:var(--ink-soft);
+  padding:80px 48px;
+  display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:center;
+}
+.locations-left .section-label{margin-bottom:20px}
+.locations-h{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(36px,4.5vw,56px);font-weight:900;
+  text-transform:uppercase;line-height:.92;margin-bottom:20px;
+}
+.locations-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:300;color:rgba(250,250,247,.55);
+  line-height:1.65;margin-bottom:28px;
+}
+.locations-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:3px;
+}
+.loc-card{
+  position:relative;overflow:hidden;height:220px;
+  background:var(--ink);
+}
+.loc-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.55);transition:filter .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.loc-card:hover img{filter:brightness(.4);transform:scale(1.04)}
+.loc-info{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:16px 18px;
+  background:linear-gradient(transparent 40%,rgba(26,22,18,.85));
+}
+.loc-city{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+}
+.loc-state{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-light)}
+.loc-count{font-size:11px;color:rgba(250,250,247,.45);margin-top:2px;letter-spacing:.06em}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — PRESS LOGOS
+═══════════════════════════════════════════════ */
+#press{
+  background:var(--ink);
+  padding:60px 48px;
+  border-top:1px solid rgba(250,250,247,.06);
+  border-bottom:1px solid rgba(250,250,247,.06);
+}
+.press-label{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(250,250,247,.3);text-align:center;margin-bottom:36px;
+}
+.press-logos{
+  display:flex;align-items:center;justify-content:center;
+  gap:52px;flex-wrap:wrap;
+}
+.press-logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(16px,2vw,22px);font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(250,250,247,.18);
+  transition:color .3s;cursor:default;
+}
+.press-logo:hover{color:rgba(250,250,247,.45)}
+
+/* responsive extras */
+@media(max-width:900px){
+  .bento-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .bento-wide,.bento-tall{grid-column:auto;grid-row:auto}
+  #brand-story{grid-template-columns:1fr;padding:70px 20px;gap:40px}
+  .brand-story-img{height:320px}
+  .brand-story-facts{grid-template-columns:1fr 1fr}
+  #locations{grid-template-columns:1fr;padding:70px 20px;gap:36px}
+  .locations-grid{grid-template-columns:1fr 1fr}
+  #press{padding:48px 20px}
+  .press-logos{gap:28px}
+}
+@media(max-width:900px){
+  .brand-story-section{padding:60px 20px}
+  .brand-story-grid{grid-template-columns:1fr;gap:40px}
+  .brand-story-images{height:300px}
+  .mosaic-quote-grid{grid-template-columns:1fr 1fr}
+  .mq-col-left{display:none}
+  .mq-img-wide{height:240px}
+  .locations-section{padding:60px 20px}
+  .locations-inner{grid-template-columns:1fr;gap:48px}
+  .loc-img-a{height:220px}
+  .loc-img-b,.loc-img-c{height:160px}
+}
+@media(max-width:480px){
+  .brand-story-images{grid-template-columns:1fr;height:220px}
+  .bsi-stack{display:none}
+  .mosaic-quote-grid{grid-template-columns:1fr}
+  .mq-col-right{display:none}
   .hero-headline{font-size:clamp(48px,13vw,70px)}
   #numbers-band{grid-template-columns:1fr 1fr}
   .team-grid{grid-template-columns:1fr 1fr}
@@ -975,7 +1212,7 @@ nav.light-nav{/* for cream pages */}
   <button class="drawer-link" onclick="drawerNav('page-featured')"   data-drawer="page-featured"  >Featured</button>
   <button class="drawer-link" onclick="drawerNav('page-process')"    data-drawer="page-process"   >Process</button>
   <button class="drawer-link" onclick="drawerNav('page-contact')"    data-drawer="page-contact"   >Contact</button>
-  <div class="drawer-contact">hello@strataproperties.com · +1 (800) STRATA-1</div>
+  <div class="drawer-contact">hello@strataproperties.com · +1 (800) STRATA 1</div>
 </div>
 
 <!-- ── PAGE INDICATOR ────────────────────────────────────────────────────────── -->
@@ -987,16 +1224,18 @@ nav.light-nav{/* for cream pages */}
   <button class="page-pip"        onclick="navigate('page-contact')"    title="Contact"></button>
 </div>
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-     PAGE 0 — HOME
-════════════════════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════════════
+     PAGE 0 HOME
+════════════════════════════════════════════════════════════════════ -->
 <div class="page active" id="page-home">
+
+  <!-- HERO -->
   <section id="hero">
     <div class="hero-slides">
-      <div class="hero-slide active"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
-      <div class="hero-slide"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
-      <div class="hero-slide"><img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
-      <div class="hero-slide"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ></div>
+      <div class="hero-slide active"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy"></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy"></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy"></div>
+      <div class="hero-slide"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy"></div>
     </div>
     <div class="hero-content">
       <div>
@@ -1005,7 +1244,7 @@ nav.light-nav{/* for cream pages */}
         </h1>
       </div>
       <div class="hero-right">
-        <div class="hero-tag">Est. 2008 — Premium Real Estate</div>
+        <div class="hero-tag">Est. 2008 Premium Real Estate</div>
         <p class="hero-sub">A vision that transcends property and space, where unmatched craftsmanship inspires elegance and innovation.</p>
         <div class="hero-scroll"><div class="scroll-line"></div>Scroll to Explore</div>
       </div>
@@ -1022,6 +1261,8 @@ nav.light-nav{/* for cream pages */}
       <div class="stat"><div class="stat-num">$2.4B</div><div class="stat-label">In Sales</div></div>
     </div>
   </section>
+
+  <!-- MARQUEE -->
   <div class="marquee-strip"><div class="marquee-inner" id="marquee-inner">
     <div class="marquee-item">Desert Estates<span class="marquee-dot"></span></div>
     <div class="marquee-item">Mountain Retreats<span class="marquee-dot"></span></div>
@@ -1036,22 +1277,15 @@ nav.light-nav{/* for cream pages */}
     <div class="marquee-item">Private Compounds<span class="marquee-dot"></span></div>
     <div class="marquee-item">Architectural Icons<span class="marquee-dot"></span></div>
   </div></div>
-  <div class="strip-wrap"><div class="photo-strip">
-    <div class="strip-item"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Chef's Kitchen</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Grand Living Room</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Master Suite</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Infinity Pool</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Desert Facade</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Dining Pavilion</div></div></div>
-    <div class="strip-item"><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="strip-caption">Spa Bath</div></div></div>
-  </div></div>
+
+  <!-- INTRO STATEMENT -->
   <section id="intro">
     <div class="intro-grid">
       <div>
         <div class="section-label reveal">Our Philosophy</div>
         <h2 class="intro-headline reveal" style="transition-delay:.1s">Homes Built For<br><em>Extraordinary</em><br>Lives</h2>
         <div class="intro-accent reveal" style="transition-delay:.15s"></div>
-        <p class="intro-body reveal" style="transition-delay:.2s">STRATA curates the world's finest residential properties — each one a testament to architectural mastery, natural harmony, and the quiet confidence of those who refuse to compromise.</p>
+        <p class="intro-body reveal" style="transition-delay:.2s">STRATA curates the world's finest residential properties. Each one is a testament to architectural mastery, natural harmony, and the quiet confidence of those who refuse to compromise on how they live.</p>
         <button class="btn reveal" style="transition-delay:.3s" onclick="navigate('page-properties')">Explore Properties <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
       </div>
       <div class="intro-visual reveal-right">
@@ -1061,7 +1295,7 @@ nav.light-nav{/* for cream pages */}
     </div>
   </section>
 
-  <!-- ── NUMBERS BAND ─────────────────────────────────────────────────── -->
+  <!-- NUMBERS BAND -->
   <div id="numbers-band">
     <div class="num-block reveal">
       <div class="num-val">240<sup>+</sup></div>
@@ -1076,71 +1310,197 @@ nav.light-nav{/* for cream pages */}
     <div class="num-block reveal" style="transition-delay:.16s">
       <div class="num-val">97<sup>%</sup></div>
       <div class="num-label">Client Satisfaction</div>
-      <div class="num-sub">Based on post-close surveys</div>
+      <div class="num-sub">Based on post close surveys</div>
     </div>
     <div class="num-block reveal" style="transition-delay:.24s">
       <div class="num-val">48<sup>h</sup></div>
-      <div class="num-label">Avg. Response Time</div>
+      <div class="num-label">Avg Response Time</div>
       <div class="num-sub">From inquiry to first showing</div>
     </div>
   </div>
 
-  <!-- ── SERVICES ──────────────────────────────────────────────────────── -->
-  <section id="services">
-    <div class="services-head">
-      <div>
-        <div class="section-label reveal">What We Do</div>
-        <h2 class="services-title reveal" style="transition-delay:.1s">Expertise<br>At Every<br>Step</h2>
-      </div>
-      <p class="services-body reveal-right">From the first inquiry to the final key handover, STRATA delivers a seamless, white-glove experience tailored to your vision.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal" style="transition-delay:0s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  <!-- FULL WIDTH BRAND STORY PANEL -->
+  <section class="brand-story-section">
+    <div class="brand-story-grid">
+      <div class="brand-story-images">
+        <div class="bsi-main reveal-left">
+          <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=700" referrerpolicy="no-referrer" loading="lazy" alt="Luxury estate exterior">
         </div>
-        <div class="service-name">Buyer Representation</div>
-        <p class="service-desc">We advocate fiercely on your behalf — negotiating price, terms, and timing to ensure you secure the property you deserve at the right value.</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.08s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="bsi-stack">
+          <div class="bsi-small reveal" style="transition-delay:.1s">
+            <img src="https://images.pexels.com/photos/259950/pexels-photo-259950.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=400" referrerpolicy="no-referrer" loading="lazy" alt="Pool terrace">
+          </div>
+          <div class="bsi-small reveal" style="transition-delay:.2s">
+            <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=400" referrerpolicy="no-referrer" loading="lazy" alt="Interior living room">
+          </div>
         </div>
-        <div class="service-name">Off-Market Access</div>
-        <p class="service-desc">Our 15-year network of architects, developers, and private sellers opens doors to exclusive listings that never reach public platforms.</p>
       </div>
-      <div class="service-card reveal" style="transition-delay:.16s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <div class="brand-story-text reveal-right">
+        <div class="section-label">Our Story</div>
+        <h2 class="brand-story-title">Eighteen Years of Defining Luxury Living</h2>
+        <p class="brand-story-body">STRATA was founded in Scottsdale in 2008 by James Hartley, a former architect who believed that finding a truly exceptional home should feel as refined as living in one. What began as a boutique desert property firm has grown into one of the most respected luxury real estate brands in the American West.</p>
+        <p class="brand-story-body">We operate across 18 markets spanning Arizona, Colorado, California, and Wyoming. Our advisors are not salespeople. They are curators, advocates, and trusted partners who work exclusively with clients seeking properties above the $2 million threshold.</p>
+        <p class="brand-story-body">Every property in our portfolio is personally inspected and approved by a STRATA principal before it is ever presented to a client. We list fewer homes than our competitors by design, because we believe your time is the most valuable asset in any transaction.</p>
+        <div class="brand-story-values">
+          <div class="brand-value">
+            <div class="brand-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="brand-value-name">Absolute Discretion</div>
+              <div class="brand-value-desc">Every transaction is handled with full confidentiality</div>
+            </div>
+          </div>
+          <div class="brand-value">
+            <div class="brand-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="brand-value-name">Lifetime Service</div>
+              <div class="brand-value-desc">Our relationship does not end at closing</div>
+            </div>
+          </div>
+          <div class="brand-value">
+            <div class="brand-value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--terra)" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div>
+              <div class="brand-value-name">Uncompromising Standards</div>
+              <div class="brand-value-desc">Only the finest 3% of listed properties qualify</div>
+            </div>
+          </div>
         </div>
-        <div class="service-name">Virtual Walkthroughs</div>
-        <p class="service-desc">Before you fly, we fly. Our team provides full HD video tours and detailed walk-through reports so every viewing counts.</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.0s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <div class="service-name">Investment Advisory</div>
-        <p class="service-desc">Luxury real estate is capital. Our advisors provide market analysis, rental yield projections, and long-term appreciation forecasts.</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.08s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div class="service-name">Transaction Management</div>
-        <p class="service-desc">From offer to deed, our in-house legal and escrow team ensures airtight documentation and a seamless, stress-free closing process.</p>
-      </div>
-      <div class="service-card reveal" style="transition-delay:.16s">
-        <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="service-name">Relocation Services</div>
-        <p class="service-desc">Moving markets? We coordinate concierge-level relocation support including school districts, lifestyle mapping, and community introductions.</p>
       </div>
     </div>
   </section>
 
-  <!-- ── ABOUT / TEAM ──────────────────────────────────────────────────── -->
+  <!-- PHOTO MOSAIC + PULLQUOTE -->
+  <section class="mosaic-quote-section">
+    <div class="mosaic-quote-grid">
+      <div class="mq-col-left">
+        <div class="mq-img-tall reveal-left">
+          <img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=900" referrerpolicy="no-referrer" loading="lazy" alt="Dining room">
+          <div class="mq-img-label">Private Dining Room</div>
+        </div>
+      </div>
+      <div class="mq-col-center">
+        <div class="mq-img-wide reveal" style="transition-delay:.08s">
+          <img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=500" referrerpolicy="no-referrer" loading="lazy" alt="Kitchen">
+          <div class="mq-img-label">Chef's Kitchen</div>
+        </div>
+        <div class="mq-pullquote reveal" style="transition-delay:.18s">
+          <div class="mq-quote-mark">&ldquo;</div>
+          <p class="mq-quote-text">We do not sell properties. We introduce people to the places where their best lives will happen.</p>
+          <div class="mq-quote-author">James Hartley, Founder of STRATA</div>
+        </div>
+      </div>
+      <div class="mq-col-right">
+        <div class="mq-img-sm reveal-right" style="transition-delay:.05s">
+          <img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=400" referrerpolicy="no-referrer" loading="lazy" alt="Bedroom">
+          <div class="mq-img-label">Master Suite</div>
+        </div>
+        <div class="mq-img-sm reveal-right" style="transition-delay:.15s">
+          <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=400" referrerpolicy="no-referrer" loading="lazy" alt="Bathroom">
+          <div class="mq-img-label">Spa Bathroom</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-head">
+      <div>
+        <div class="section-label reveal">What We Do</div>
+        <h2 class="services-title reveal" style="transition-delay:.1s">Expertise At Every Step</h2>
+      </div>
+      <p class="services-body reveal-right">From the first inquiry to the final key handover, STRATA delivers a seamless white glove experience tailored entirely to your vision and timeline.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" style="transition-delay:0s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="service-name">Buyer Representation</div>
+        <p class="service-desc">We advocate on your behalf, negotiating price, terms, and timing to ensure you secure the right property at the right value. Our advisors have closed over 240 transactions with a 97% client satisfaction rate.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="service-name">Off Market Access</div>
+        <p class="service-desc">Our 18 year network of architects, developers, and private sellers opens doors to exclusive listings that never reach public platforms. Over 40% of our placements come from off market sources.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="service-name">Virtual Walkthroughs</div>
+        <p class="service-desc">Before you fly, we fly. Our team provides full HD video tours and detailed reports for every property so that every in person visit is purposeful and productive.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="service-name">Investment Advisory</div>
+        <p class="service-desc">Luxury real estate is capital. Our advisors provide in depth market analysis, rental yield projections, and long term appreciation forecasts for every property we recommend.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="service-name">Transaction Management</div>
+        <p class="service-desc">From offer to deed, our in house legal and escrow team ensures airtight documentation and a seamless, stress free closing process tailored to high value residential transactions.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div class="service-name">Relocation Services</div>
+        <p class="service-desc">Moving markets? We coordinate concierge level relocation support including school district research, lifestyle mapping, community introductions, and trusted vendor connections.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION MAP VISUAL -->
+  <section class="locations-section">
+    <div class="locations-inner">
+      <div class="locations-text reveal-left">
+        <div class="section-label">Where We Operate</div>
+        <h2 class="locations-title">18 Markets Across the American West</h2>
+        <p class="locations-body">From the red rock canyons of Sedona to the powder slopes of Jackson Hole, STRATA operates in the most sought after residential markets in the country. Each office is staffed by advisors with deep roots and genuine expertise in their local market.</p>
+        <div class="locations-list">
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Scottsdale, AZ</span><span class="loc-tag">Flagship Office</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Denver, CO</span><span class="loc-tag">Mountain Division</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Los Angeles, CA</span><span class="loc-tag">Coastal Division</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Sedona, AZ</span><span class="loc-tag">Desert Specialist</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Aspen, CO</span><span class="loc-tag">Alpine Specialist</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Malibu, CA</span><span class="loc-tag">Coastal Specialist</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Jackson, WY</span><span class="loc-tag">Mountain Specialist</span></div>
+          <div class="location-row"><span class="loc-dot"></span><span class="loc-name">Santa Barbara, CA</span><span class="loc-tag">Estate Specialist</span></div>
+        </div>
+        <button class="btn" onclick="navigate('page-contact')" style="margin-top:36px">Contact Your Local Advisor <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+      <div class="locations-images reveal-right">
+        <div class="loc-img-grid">
+          <div class="loc-img-a">
+            <img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=500" referrerpolicy="no-referrer" loading="lazy" alt="Scottsdale Arizona">
+            <div class="loc-img-label">Scottsdale, AZ</div>
+          </div>
+          <div class="loc-img-b">
+            <img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=380" referrerpolicy="no-referrer" loading="lazy" alt="Aspen Colorado">
+            <div class="loc-img-label">Aspen, CO</div>
+          </div>
+          <div class="loc-img-c">
+            <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=380" referrerpolicy="no-referrer" loading="lazy" alt="Malibu California">
+            <div class="loc-img-label">Malibu, CA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <div class="strip-wrap"><div class="photo-strip">
+    <div class="strip-item"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Chef's Kitchen</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Grand Living Room</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Master Suite</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Infinity Pool</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Estate Facade</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Dining Pavilion</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Spa Bathroom</div></div>
+    <div class="strip-item"><img src="https://images.pexels.com/photos/259950/pexels-photo-259950.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1);" referrerpolicy="no-referrer" loading="lazy"><div class="strip-caption">Pool Terrace</div></div>
+  </div></div>
+
+  <!-- ABOUT / TEAM -->
   <section id="about">
     <div class="about-top">
       <div>
@@ -1149,19 +1509,16 @@ nav.light-nav{/* for cream pages */}
           Built On Trust.<br><em>Driven by Excellence.</em>
         </h2>
       </div>
-      <p class="about-body reveal-right">
-        STRATA was founded in 2008 by a team of architects, investors, and market analysts who believed <strong>luxury real estate deserved a smarter approach</strong>. We don't list properties — we curate life-defining decisions.
-      </p>
+      <p class="about-body reveal-right">STRATA was founded in 2008 by a team of architects, investors, and market analysts who believed luxury real estate deserved a smarter approach. We do not list properties. We curate <strong>life defining decisions</strong>.</p>
     </div>
-
     <div class="about-split reveal">
       <div class="about-img-main">
         <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800" referrerpolicy="no-referrer" loading="lazy" alt="STRATA office">
       </div>
       <div class="about-story">
         <div class="story-quote">
-          "We don't measure success by transactions closed. We measure it by the look on a client's face the first time they step into their home."
-          <cite>— James Hartley, Founder</cite>
+          "We do not measure success by transactions closed. We measure it by the look on a client's face the first time they step into their home."
+          <cite>James Hartley, Founder</cite>
         </div>
         <div class="story-stat">
           <div class="story-stat-num">18</div>
@@ -1169,7 +1526,7 @@ nav.light-nav{/* for cream pages */}
         </div>
         <div class="story-stat">
           <div class="story-stat-num">6</div>
-          <div class="story-stat-label">Award-Winning Advisors</div>
+          <div class="story-stat-label">Award Winning Advisors</div>
         </div>
         <div class="story-stat">
           <div class="story-stat-num">3</div>
@@ -1177,54 +1534,45 @@ nav.light-nav{/* for cream pages */}
         </div>
       </div>
     </div>
-
     <div class="team-label reveal">Meet the Team</div>
     <div class="team-grid">
       <div class="team-card reveal" style="transition-delay:0s">
         <div class="team-card-img">
           <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="James Hartley">
-          <div class="team-card-overlay">
-            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-          </div>
+          <div class="team-card-overlay"><div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
         </div>
         <div class="team-info">
           <div class="team-name">James Hartley</div>
-          <div class="team-role">Founder & Principal</div>
-          <div class="team-spec">Desert &amp; Mountain Estates</div>
+          <div class="team-role">Founder and Principal</div>
+          <div class="team-spec">Desert and Mountain Estates</div>
         </div>
       </div>
       <div class="team-card reveal" style="transition-delay:.08s">
         <div class="team-card-img">
           <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Sofia Reyes">
-          <div class="team-card-overlay">
-            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-          </div>
+          <div class="team-card-overlay"><div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
         </div>
         <div class="team-info">
           <div class="team-name">Sofia Reyes</div>
           <div class="team-role">Senior Advisor</div>
-          <div class="team-spec">Coastal &amp; Oceanfront</div>
+          <div class="team-spec">Coastal and Oceanfront</div>
         </div>
       </div>
       <div class="team-card reveal" style="transition-delay:.16s">
         <div class="team-card-img">
           <img src="https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Marcus Webb">
-          <div class="team-card-overlay">
-            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-          </div>
+          <div class="team-card-overlay"><div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
         </div>
         <div class="team-info">
           <div class="team-name">Marcus Webb</div>
           <div class="team-role">Investment Advisor</div>
-          <div class="team-spec">Portfolio &amp; Commercial</div>
+          <div class="team-spec">Portfolio and Commercial</div>
         </div>
       </div>
       <div class="team-card reveal" style="transition-delay:.24s">
         <div class="team-card-img">
           <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Elena Park">
-          <div class="team-card-overlay">
-            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-          </div>
+          <div class="team-card-overlay"><div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
         </div>
         <div class="team-info">
           <div class="team-name">Elena Park</div>
@@ -1233,25 +1581,24 @@ nav.light-nav{/* for cream pages */}
         </div>
       </div>
     </div>
-
     <div class="awards-band">
-      <div class="award-item"><div class="award-year">2024</div><div class="award-name">Best Luxury<br>Brokerage — West</div></div>
+      <div class="award-item"><div class="award-year">2024</div><div class="award-name">Best Luxury Brokerage West</div></div>
       <div class="award-divider"></div>
-      <div class="award-item"><div class="award-year">2023</div><div class="award-name">Top 10<br>Desert Markets</div></div>
+      <div class="award-item"><div class="award-year">2023</div><div class="award-name">Top 10 Desert Markets</div></div>
       <div class="award-divider"></div>
-      <div class="award-item"><div class="award-year">2022</div><div class="award-name">Robb Report<br>Best in Class</div></div>
+      <div class="award-item"><div class="award-year">2022</div><div class="award-name">Robb Report Best in Class</div></div>
       <div class="award-divider"></div>
-      <div class="award-item"><div class="award-year">2021</div><div class="award-name">WSJ Top 50<br>Real Estate Teams</div></div>
+      <div class="award-item"><div class="award-year">2021</div><div class="award-name">WSJ Top 50 Real Estate Teams</div></div>
       <div class="award-divider"></div>
-      <div class="award-item"><div class="award-year">2020</div><div class="award-name">Architectural<br>Digest Partner</div></div>
+      <div class="award-item"><div class="award-year">2020</div><div class="award-name">Architectural Digest Partner</div></div>
       <div class="award-divider"></div>
-      <div class="award-item"><div class="award-year">2019</div><div class="award-name">Forbes Real<br>Estate Council</div></div>
+      <div class="award-item"><div class="award-year">2019</div><div class="award-name">Forbes Real Estate Council</div></div>
     </div>
   </section>
-</div>
 
+</div>
 <!-- ════════════════════════════════════════════════════════════════════════════
-     PAGE 1 — PROPERTIES
+     PAGE 1 PROPERTIES
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-properties">
   <section id="properties">
@@ -1281,7 +1628,7 @@ nav.light-nav{/* for cream pages */}
       <p class="interiors-sub reveal-right">Every room a statement. Every surface chosen with intention.</p>
     </div>
     <div class="mosaic reveal">
-      <div class="mosaic-item mosaic-tall"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Open-Plan Kitchen · Solano Residence</div></div></div>
+      <div class="mosaic-item mosaic-tall"><img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=600" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Open Plan Kitchen · Solano Residence</div></div></div>
       <div class="mosaic-item"><img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Great Room · Peak House</div></div></div>
       <div class="mosaic-item"><img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Stone Bath · Casa Quieta</div></div></div>
       <div class="mosaic-item"><img src="https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=300" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" ><div class="mosaic-label">Wine Cellar · Mare Blu</div></div></div>
@@ -1291,7 +1638,7 @@ nav.light-nav{/* for cream pages */}
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════════════════
-     PAGE 2 — FEATURED
+     PAGE 2 FEATURED
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-featured">
   <section id="featured">
@@ -1300,7 +1647,7 @@ nav.light-nav{/* for cream pages */}
       <div class="reveal-left">
         <div class="featured-label-top">Property of the Month</div>
         <h2 class="featured-title">Casa Roja<br>Desert<br>Compound</h2>
-        <p class="featured-sub">An architectural masterwork rising from the Sonoran desert — 6 acres of absolute privacy, brutalist precision, and amber warmth.</p>
+        <p class="featured-sub">An architectural masterwork rising from the Sonoran desert 6 acres of absolute privacy, brutalist precision, and amber warmth.</p>
         <div class="featured-specs">
           <div><div class="featured-spec-val">6</div><div class="featured-spec-key">Bedrooms</div></div>
           <div><div class="featured-spec-val">8</div><div class="featured-spec-key">Bathrooms</div></div>
@@ -1317,7 +1664,7 @@ nav.light-nav{/* for cream pages */}
   <section id="testimonial">
     <div class="testimonial-inner reveal">
       <p class="testimonial-text">"STRATA didn't just find us a house. They found the place where we finally stopped looking. Private, intuitive, and completely without compromise."</p>
-      <div class="testimonial-author"><div class="author-line"></div><span class="author-name">Marcus & Elena Voss — Scottsdale, AZ</span><div class="author-line"></div></div>
+      <div class="testimonial-author"><div class="author-line"></div><span class="author-name">Marcus & Elena Voss Scottsdale, AZ</span><div class="author-line"></div></div>
     </div>
   </section>
   <section id="listings-cta" style="padding:0">
@@ -1343,27 +1690,27 @@ nav.light-nav{/* for cream pages */}
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════════════════
-     PAGE 3 — PROCESS
+     PAGE 3 PROCESS
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-process">
   <section id="process">
     <div class="process-page-header">
       <div>
         <div class="section-label reveal">How We Work</div>
-        <h2 class="process-title reveal" style="transition-delay:.1s">Our<br>Four-Step<br>Process</h2>
+        <h2 class="process-title reveal" style="transition-delay:.1s">Our<br>Four Step<br>Process</h2>
       </div>
-      <p class="process-intro reveal-right">We believe finding the right home should feel effortless — because we've done the hard work long before you arrived.</p>
+      <p class="process-intro reveal-right">We believe finding the right home should feel effortless because we've done the hard work long before you arrived.</p>
     </div>
     <div class="process-steps">
-      <div class="process-step reveal" style="transition-delay:0s"><div class="step-num">01</div><div class="step-title">Discovery Call</div><p class="step-desc">We learn your ideal property — location, architectural tastes, lifestyle requirements, and long-term vision.</p></div>
-      <div class="process-step reveal" style="transition-delay:.1s"><div class="step-num">02</div><div class="step-title">Curated Selection</div><p class="step-desc">Our team handpicks 3–5 properties from our exclusive portfolio and off-market network that match your profile exactly.</p></div>
-      <div class="process-step reveal" style="transition-delay:.2s"><div class="step-num">03</div><div class="step-title">Private Viewings</div><p class="step-desc">Experience each property with a dedicated advisor. No crowds, no pressure — just you and your future home.</p></div>
+      <div class="process-step reveal" style="transition-delay:0s"><div class="step-num">01</div><div class="step-title">Discovery Call</div><p class="step-desc">We learn your ideal property location, architectural tastes, lifestyle requirements, and long term vision.</p></div>
+      <div class="process-step reveal" style="transition-delay:.1s"><div class="step-num">02</div><div class="step-title">Curated Selection</div><p class="step-desc">Our team handpicks 3 to 5 properties from our exclusive portfolio and off market network that match your profile exactly.</p></div>
+      <div class="process-step reveal" style="transition-delay:.2s"><div class="step-num">03</div><div class="step-title">Private Viewings</div><p class="step-desc">Experience each property with a dedicated advisor. No crowds, no pressure just you and your future home.</p></div>
       <div class="process-step reveal" style="transition-delay:.3s"><div class="step-num">04</div><div class="step-title">Seamless Closing</div><p class="step-desc">Our legal and financial partners handle every detail, ensuring a smooth, discreet transaction from offer to keys.</p></div>
     </div>
     <div class="process-divider reveal">
 <img src="https://images.pexels.com/photos/2119714/pexels-photo-2119714.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800&h=800" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy" >
       <div class="process-divider-text">
-        "Architecture is the art of how to waste space purposefully — we ensure not a single square foot goes unfelt."
+        "Architecture is the art of how to waste space purposefully we ensure not a single square foot goes unfelt."
         <cite>— STRATA Design Philosophy</cite>
       </div>
     </div>
@@ -1371,7 +1718,7 @@ nav.light-nav{/* for cream pages */}
 </div>
 
 <!-- ════════════════════════════════════════════════════════════════════════════
-     PAGE 4 — CONTACT
+     PAGE 4 CONTACT
 ════════════════════════════════════════════════════════════════════════════ -->
 <div class="page" id="page-contact">
   <div class="contact-bg">
@@ -1388,7 +1735,7 @@ nav.light-nav{/* for cream pages */}
         <h2 class="contact-big-title">Your Vision.<br><em>Our Expertise.</em></h2>
       </div>
       <p class="contact-tagline reveal-right" style="transition-delay:.12s">
-        Whether you have a specific property in mind or simply know that you deserve better — we're here.
+        Whether you have a specific property in mind or simply know that you deserve better we're here.
       </p>
     </div>
 
@@ -1403,7 +1750,7 @@ nav.light-nav{/* for cream pages */}
       <div class="pillar">
         <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3l2 4-2.5 1.5a11 11 0 005 5L14 12l4 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg></div>
         <div class="pillar-label">Direct Line</div>
-        <div class="pillar-value">+1 (800) STRATA-1</div>
+        <div class="pillar-value">+1 (800) STRATA 1</div>
         <div class="pillar-sub">Mon–Sat, 8am–8pm</div>
       </div>
       <div class="pillar">
@@ -1467,7 +1814,7 @@ nav.light-nav{/* for cream pages */}
       <div class="form-strip form-strip-wide">
         <div class="form-field-block form-textarea-block" style="grid-column:span 2">
           <div class="field-label">Tell us about your ideal property</div>
-          <textarea class="form-textarea" placeholder="Describe your vision — architecture style, must-haves, lifestyle needs..."></textarea>
+          <textarea class="form-textarea" placeholder="Describe your vision architecture style, must-haves, lifestyle needs..."></textarea>
         </div>
       </div>
       <div class="contact-submit-row">
@@ -1565,7 +1912,7 @@ function navigate(toId){
     isTransitioning=false;
     updateNav(toId);
     // re-trigger reveals on new page
-    setTimeout(()=>{observeReveal();},60);
+    setTimeout(()=>{observeReveal(); kickReveal(toId);},60);
   }, speed+60);
 }
 
@@ -1589,12 +1936,17 @@ function onPageScroll(){
   document.getElementById('navbar').classList.toggle('scrolled',scrolled);
 }
 
-// Each page scroll updates nav
+// Each page scroll updates nav + triggers reveals
 PAGES.forEach(id=>{
   const el=document.getElementById(id);
   if(el) el.addEventListener('scroll',()=>{
     if(id!==currentPage)return;
     document.getElementById('navbar').classList.toggle('scrolled',el.scrollTop>60);
+    // reveal items that have scrolled into view
+    el.querySelectorAll('.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.intro-accent:not(.visible)').forEach(item=>{
+      const r=item.getBoundingClientRect();
+      if(r.top < window.innerHeight*0.92) item.classList.add('visible');
+    });
   },{passive:true});
 });
 
@@ -1712,10 +2064,20 @@ document.getElementById('prop-modal').addEventListener('click',function(e){if(e.
 // ═══════════════════════════════════════════════
 function observeReveal(){
   const sel='.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.intro-accent:not(.visible)';
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll(sel).forEach(el=>obs.observe(el));
+  // Each element must be observed with its scrolling page as root,
+  // because pages are position:fixed containers viewport root won't see them
+  document.querySelectorAll(sel).forEach(el=>{
+    const page=el.closest('.page')||document.documentElement;
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    },{root:page,threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+    obs.observe(el);
+  });
 }
 
 // ═══════════════════════════════════════════════
@@ -1728,7 +2090,23 @@ window.addEventListener('load',()=>{
   updateNav('page-home');
   const mi=document.getElementById('marquee-inner');
   mi.innerHTML+=mi.innerHTML;
+  // Immediately reveal anything already visible in the active page
+  kickReveal('page-home');
 });
+
+// Force-reveal items already in the scroll viewport of a page
+function kickReveal(pageId){
+  const page=document.getElementById(pageId);
+  if(!page) return;
+  setTimeout(()=>{
+    const items=page.querySelectorAll('.reveal:not(.visible),.reveal-left:not(.visible),.reveal-right:not(.visible),.intro-accent:not(.visible)');
+    items.forEach(el=>{
+      const r=el.getBoundingClientRect();
+      // getBoundingClientRect on items inside a fixed container works correctly
+      if(r.top < window.innerHeight*1.1) el.classList.add('visible');
+    });
+  }, 80);
+}
 </script>
 </body>
 </html>
