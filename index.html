@@ -491,35 +491,355 @@ nav.light-nav{/* for cream pages */}
 /* ═══════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — NUMBERS BAND
+═══════════════════════════════════════════════ */
+#numbers-band{
+  background:var(--cream);color:var(--ink);
+  padding:72px 48px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;
+}
+.num-block{
+  padding:40px 36px;background:var(--cream);
+  border-top:2px solid var(--terra);
+  transition:background .3s;
+}
+.num-block:hover{background:#ede8e0}
+.num-val{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(48px,6vw,80px);font-weight:900;
+  line-height:1;color:var(--ink);
+  display:flex;align-items:baseline;gap:4px;
+}
+.num-val sup{font-size:.4em;color:var(--terra);font-weight:700}
+.num-label{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--warm-gray);margin-top:10px;
+}
+.num-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-style:italic;font-weight:300;
+  color:rgba(26,22,18,.5);margin-top:6px;line-height:1.4;
+}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — SERVICES GRID
+═══════════════════════════════════════════════ */
+#services{background:var(--ink-soft);padding:100px 48px}
+.services-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  align-items:end;margin-bottom:64px;
+}
+.services-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(40px,5vw,66px);font-weight:900;
+  text-transform:uppercase;line-height:.92;
+}
+.services-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;font-style:italic;
+  color:rgba(250,250,247,.55);line-height:1.7;
+}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.service-card{
+  padding:40px 36px;background:rgba(250,250,247,.03);
+  border-left:1px solid rgba(196,98,45,.15);
+  position:relative;overflow:hidden;
+  transition:background .35s;
+}
+.service-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--terra);transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+.service-card:hover{background:rgba(196,98,45,.06)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-icon{
+  width:44px;height:44px;border:1px solid rgba(196,98,45,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:24px;
+}
+.service-icon svg{width:18px;height:18px;stroke:var(--terra);fill:none;stroke-width:1.5}
+.service-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:22px;font-weight:700;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.service-desc{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;color:rgba(250,250,247,.5);line-height:1.7;
+}
+
+/* ═══════════════════════════════════════════════
+   HOME EXTRAS — ABOUT / TEAM
+═══════════════════════════════════════════════ */
+#about{background:var(--ink);padding:100px 48px}
+.about-top{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:end;margin-bottom:72px;
+}
+.about-headline{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(40px,5vw,66px);font-weight:900;
+  text-transform:uppercase;line-height:.92;
+}
+.about-headline em{
+  font-style:italic;font-family:'Cormorant Garamond',serif;
+  font-size:.9em;color:var(--terra-light);font-weight:300;
+  text-transform:none;display:block;
+}
+.about-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;color:rgba(250,250,247,.65);
+  line-height:1.75;
+}
+.about-body strong{color:var(--terra-light);font-weight:400}
+
+/* Full-width split panel */
+.about-split{
+  display:grid;grid-template-columns:5fr 4fr;
+  gap:3px;margin-bottom:72px;min-height:520px;
+}
+.about-img-main{position:relative;overflow:hidden}
+.about-img-main img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.about-img-main:hover img{transform:scale(1.03)}
+.about-story{
+  background:var(--ink-soft);
+  padding:52px 48px;
+  display:flex;flex-direction:column;justify-content:center;gap:28px;
+}
+.story-stat{border-top:1px solid rgba(196,98,45,.2);padding-top:20px}
+.story-stat-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:48px;font-weight:900;color:var(--terra-light);line-height:1;
+}
+.story-stat-label{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(250,250,247,.4);margin-top:4px;
+}
+.story-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-weight:300;font-style:italic;
+  color:rgba(250,250,247,.7);line-height:1.65;
+}
+.story-quote cite{
+  display:block;margin-top:14px;font-style:normal;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--terra);
+}
+
+/* Team grid */
+.team-label{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--terra);margin-bottom:40px;
+  display:flex;align-items:center;gap:12px;
+}
+.team-label::before{content:'';width:30px;height:1px;background:var(--terra)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.team-card{position:relative;overflow:hidden;cursor:pointer}
+.team-card-img{
+  aspect-ratio:3/4;overflow:hidden;position:relative;
+  background:var(--ink-soft);
+}
+.team-card-img img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  transition:transform .8s cubic-bezier(.16,1,.3,1),filter .8s ease;
+  filter:brightness(.88) grayscale(.2);
+}
+.team-card:hover .team-card-img img{
+  transform:scale(1.04);filter:brightness(.75) grayscale(0);
+}
+.team-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,22,18,.9) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:20px;opacity:0;transition:opacity .4s;
+}
+.team-card:hover .team-card-overlay{opacity:1}
+.team-overlay-btn{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--terra-light);display:flex;align-items:center;gap:6px;
+  border-bottom:1px solid rgba(196,98,45,.3);padding-bottom:6px;width:fit-content;
+}
+.team-info{padding:18px 0 0}
+.team-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:20px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.04em;margin-bottom:3px;
+}
+.team-role{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--terra-light);margin-bottom:6px;
+}
+.team-spec{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:rgba(250,250,247,.45);
+}
+
+/* Awards band */
+.awards-band{
+  margin-top:72px;padding:40px 0;
+  border-top:1px solid rgba(250,250,247,.07);
+  border-bottom:1px solid rgba(250,250,247,.07);
+  display:flex;gap:48px;align-items:center;
+  overflow-x:auto;scrollbar-width:none;
+}
+.awards-band::-webkit-scrollbar{display:none}
+.award-item{flex-shrink:0;text-align:center;min-width:140px}
+.award-year{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:6px}
+.award-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:16px;font-weight:700;text-transform:uppercase;
+  color:rgba(250,250,247,.55);line-height:1.2;
+}
+.award-divider{width:1px;height:40px;background:rgba(250,250,247,.08);flex-shrink:0}
+
+/* ═══════════════════════════════════════════════
+   MOBILE NAV HAMBURGER
+═══════════════════════════════════════════════ */
+.nav-hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+}
+.nav-hamburger span{
+  display:block;width:24px;height:2px;background:var(--white);
+  transition:transform .3s,opacity .3s;transform-origin:center;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile drawer */
+#mobile-drawer{
+  position:fixed;inset:0;z-index:7500;
+  background:rgba(26,22,18,.97);backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  transform:translateX(100%);transition:transform .45s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;
+}
+#mobile-drawer.open{transform:translateX(0);pointer-events:all}
+.drawer-link{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(36px,9vw,56px);font-weight:800;text-transform:uppercase;
+  letter-spacing:.04em;color:rgba(250,250,247,.6);
+  cursor:pointer;transition:color .2s;
+  padding:6px 20px;border:none;background:none;
+}
+.drawer-link:hover,.drawer-link.active{color:var(--white)}
+.drawer-link.active::after{
+  content:'';display:inline-block;width:8px;height:8px;
+  background:var(--terra);border-radius:50%;margin-left:12px;vertical-align:middle;
+}
+.drawer-contact{
+  margin-top:20px;
+  font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(250,250,247,.3);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — MOBILE FIRST
+═══════════════════════════════════════════════ */
 @media(max-width:900px){
-  nav{padding:16px 20px}.nav-links{display:none}
-  .hero-content{grid-template-columns:1fr;padding:0 20px 60px}.hero-right,.hero-stats{display:none}
-  #intro{padding:70px 20px}
+  /* Nav */
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-hamburger{display:flex}
+
+  /* Hero */
+  .hero-content{grid-template-columns:1fr;padding:0 20px 72px}
+  .hero-right,.hero-stats{display:none}
+  .hero-headline{font-size:clamp(58px,14vw,88px)}
+
+  /* Pages */
+  #intro{padding:60px 20px}
   .intro-grid{grid-template-columns:1fr;gap:40px}
-  #properties{padding:90px 20px}
+  .intro-visual{aspect-ratio:4/3}
+
+  /* Numbers band */
+  #numbers-band{grid-template-columns:1fr 1fr;padding:48px 20px;gap:2px}
+  .num-block{padding:28px 20px}
+
+  /* Services */
+  #services{padding:70px 20px}
+  .services-head{grid-template-columns:1fr;gap:20px;margin-bottom:40px}
+  .services-grid{grid-template-columns:1fr;gap:2px}
+
+  /* About */
+  #about{padding:70px 20px}
+  .about-top{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
+  .about-split{grid-template-columns:1fr;min-height:auto}
+  .about-img-main{height:280px}
+  .about-story{padding:36px 24px}
+  .team-grid{grid-template-columns:1fr 1fr;gap:3px}
+  .awards-band{gap:28px;padding:32px 20px}
+
+  /* Properties page */
+  #properties{padding:80px 20px}
   .props-header{flex-direction:column;align-items:flex-start;gap:20px}
-  .props-grid{grid-template-columns:1fr 1fr}.prop-card:first-child{grid-row:auto}
-  #interiors{padding:70px 0}
-  .interiors-header{flex-direction:column;gap:16px;align-items:flex-start;padding:0 20px 40px}
-  .interiors-sub{text-align:left}.mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}.mosaic-tall{grid-row:auto}
-  .featured-content{grid-template-columns:1fr;padding:0 20px;gap:32px}
-  #testimonial{padding:70px 20px}
-  .listings-header{padding:60px 20px 36px}
+  .props-grid{grid-template-columns:1fr 1fr}
+  .prop-card:first-child{grid-row:auto}
+  .props-filter{flex-wrap:wrap}
+
+  /* Interiors */
+  #interiors{padding:60px 0}
+  .interiors-header{flex-direction:column;gap:14px;align-items:flex-start;padding:0 20px 36px}
+  .interiors-sub{text-align:left}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .mosaic-tall{grid-row:auto}
+
+  /* Featured */
+  .featured-content{grid-template-columns:1fr;padding:0 20px;gap:28px}
+  .featured-price{font-size:40px;text-align:left}
+
+  /* Testimonial */
+  #testimonial{padding:60px 20px}
+
+  /* Collections */
+  .listings-header{padding:56px 20px 32px}
   .cta-grid{grid-template-columns:1fr}
-  #process{padding:90px 20px}
-  .process-page-header{grid-template-columns:1fr;gap:24px}
+  .cta-card{height:380px}
+
+  /* Process */
+  #process{padding:80px 20px}
+  .process-page-header{grid-template-columns:1fr;gap:20px;margin-bottom:48px}
   .process-steps{grid-template-columns:1fr 1fr}
-  #contact-section{padding:90px 20px 40px}
-  .contact-top{grid-template-columns:1fr;gap:20px}
+  .process-divider{height:40vh;min-height:280px}
+
+  /* Contact */
+  #contact-section{padding:80px 20px 40px}
+  .contact-top{grid-template-columns:1fr;gap:16px;margin-bottom:40px}
+  .contact-big-title{font-size:clamp(40px,10vw,64px)}
   .contact-tagline{text-align:left}
   .contact-pillars{grid-template-columns:1fr}
-  .form-strip{grid-template-columns:1fr 1fr}
+  .form-strip{grid-template-columns:1fr}
   .form-strip-wide{grid-template-columns:1fr}
   .form-textarea-block{grid-column:auto}
   .contact-submit-row{grid-template-columns:1fr}
   .submit-message{display:none}
-  .modal-inner{grid-template-columns:1fr}.modal-gallery,.modal-gallery-main{height:220px;min-height:220px}
+  .contact-bg-text{font-size:28vw;bottom:-5px;right:-5px}
+
+  /* Modal */
+  .modal-inner{grid-template-columns:1fr}
+  .modal-gallery,.modal-gallery-main{height:200px;min-height:200px}
+  .modal-body{padding:28px 20px}
+
+  /* Indicators */
   #page-indicator{display:none}
+}
+
+@media(max-width:480px){
+  .hero-headline{font-size:clamp(48px,13vw,70px)}
+  #numbers-band{grid-template-columns:1fr 1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .process-steps{grid-template-columns:1fr}
+  .props-grid{grid-template-columns:1fr}
+  .marquee-inner{gap:36px}
+  .form-strip{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -643,7 +963,20 @@ nav.light-nav{/* for cream pages */}
     Book a Viewing
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
   </button>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ── MOBILE DRAWER ─────────────────────────────────────────────────────────── -->
+<div id="mobile-drawer">
+  <button class="drawer-link" onclick="drawerNav('page-home')"       data-drawer="page-home"      >Home</button>
+  <button class="drawer-link" onclick="drawerNav('page-properties')" data-drawer="page-properties">Properties</button>
+  <button class="drawer-link" onclick="drawerNav('page-featured')"   data-drawer="page-featured"  >Featured</button>
+  <button class="drawer-link" onclick="drawerNav('page-process')"    data-drawer="page-process"   >Process</button>
+  <button class="drawer-link" onclick="drawerNav('page-contact')"    data-drawer="page-contact"   >Contact</button>
+  <div class="drawer-contact">hello@strataproperties.com · +1 (800) STRATA-1</div>
+</div>
 
 <!-- ── PAGE INDICATOR ────────────────────────────────────────────────────────── -->
 <div id="page-indicator">
@@ -725,6 +1058,194 @@ nav.light-nav{/* for cream pages */}
         <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=1000" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" referrerpolicy="no-referrer" loading="lazy">
         <div class="intro-img-label">House Type A — Desert Series</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── NUMBERS BAND ─────────────────────────────────────────────────── -->
+  <div id="numbers-band">
+    <div class="num-block reveal">
+      <div class="num-val">240<sup>+</sup></div>
+      <div class="num-label">Properties Sold</div>
+      <div class="num-sub">Across 18 US markets</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:.08s">
+      <div class="num-val">$2.4<sup>B</sup></div>
+      <div class="num-label">Total Sales Volume</div>
+      <div class="num-sub">Since our founding in 2008</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:.16s">
+      <div class="num-val">97<sup>%</sup></div>
+      <div class="num-label">Client Satisfaction</div>
+      <div class="num-sub">Based on post-close surveys</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:.24s">
+      <div class="num-val">48<sup>h</sup></div>
+      <div class="num-label">Avg. Response Time</div>
+      <div class="num-sub">From inquiry to first showing</div>
+    </div>
+  </div>
+
+  <!-- ── SERVICES ──────────────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="services-head">
+      <div>
+        <div class="section-label reveal">What We Do</div>
+        <h2 class="services-title reveal" style="transition-delay:.1s">Expertise<br>At Every<br>Step</h2>
+      </div>
+      <p class="services-body reveal-right">From the first inquiry to the final key handover, STRATA delivers a seamless, white-glove experience tailored to your vision.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" style="transition-delay:0s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-name">Buyer Representation</div>
+        <p class="service-desc">We advocate fiercely on your behalf — negotiating price, terms, and timing to ensure you secure the property you deserve at the right value.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="service-name">Off-Market Access</div>
+        <p class="service-desc">Our 15-year network of architects, developers, and private sellers opens doors to exclusive listings that never reach public platforms.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="service-name">Virtual Walkthroughs</div>
+        <p class="service-desc">Before you fly, we fly. Our team provides full HD video tours and detailed walk-through reports so every viewing counts.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.0s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div class="service-name">Investment Advisory</div>
+        <p class="service-desc">Luxury real estate is capital. Our advisors provide market analysis, rental yield projections, and long-term appreciation forecasts.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.08s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="service-name">Transaction Management</div>
+        <p class="service-desc">From offer to deed, our in-house legal and escrow team ensures airtight documentation and a seamless, stress-free closing process.</p>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.16s">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="service-name">Relocation Services</div>
+        <p class="service-desc">Moving markets? We coordinate concierge-level relocation support including school districts, lifestyle mapping, and community introductions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT / TEAM ──────────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="about-top">
+      <div>
+        <div class="section-label reveal">Who We Are</div>
+        <h2 class="about-headline reveal" style="transition-delay:.1s">
+          Built On Trust.<br><em>Driven by Excellence.</em>
+        </h2>
+      </div>
+      <p class="about-body reveal-right">
+        STRATA was founded in 2008 by a team of architects, investors, and market analysts who believed <strong>luxury real estate deserved a smarter approach</strong>. We don't list properties — we curate life-defining decisions.
+      </p>
+    </div>
+
+    <div class="about-split reveal">
+      <div class="about-img-main">
+        <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800" referrerpolicy="no-referrer" loading="lazy" alt="STRATA office">
+      </div>
+      <div class="about-story">
+        <div class="story-quote">
+          "We don't measure success by transactions closed. We measure it by the look on a client's face the first time they step into their home."
+          <cite>— James Hartley, Founder</cite>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">18</div>
+          <div class="story-stat-label">Years in Luxury Real Estate</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">6</div>
+          <div class="story-stat-label">Award-Winning Advisors</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">3</div>
+          <div class="story-stat-label">Office Locations Nationwide</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-label reveal">Meet the Team</div>
+    <div class="team-grid">
+      <div class="team-card reveal" style="transition-delay:0s">
+        <div class="team-card-img">
+          <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="James Hartley">
+          <div class="team-card-overlay">
+            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">James Hartley</div>
+          <div class="team-role">Founder & Principal</div>
+          <div class="team-spec">Desert &amp; Mountain Estates</div>
+        </div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.08s">
+        <div class="team-card-img">
+          <img src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Sofia Reyes">
+          <div class="team-card-overlay">
+            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Sofia Reyes</div>
+          <div class="team-role">Senior Advisor</div>
+          <div class="team-spec">Coastal &amp; Oceanfront</div>
+        </div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.16s">
+        <div class="team-card-img">
+          <img src="https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Marcus Webb">
+          <div class="team-card-overlay">
+            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Marcus Webb</div>
+          <div class="team-role">Investment Advisor</div>
+          <div class="team-spec">Portfolio &amp; Commercial</div>
+        </div>
+      </div>
+      <div class="team-card reveal" style="transition-delay:.24s">
+        <div class="team-card-img">
+          <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=500&h=666" referrerpolicy="no-referrer" loading="lazy" alt="Elena Park">
+          <div class="team-card-overlay">
+            <div class="team-overlay-btn">View Profile <svg viewBox="0 0 24 24" fill="none" stroke-width="2" style="width:10px;height:10px;stroke:currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Elena Park</div>
+          <div class="team-role">Client Relations</div>
+          <div class="team-spec">Buyer Concierge</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="awards-band">
+      <div class="award-item"><div class="award-year">2024</div><div class="award-name">Best Luxury<br>Brokerage — West</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-year">2023</div><div class="award-name">Top 10<br>Desert Markets</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-year">2022</div><div class="award-name">Robb Report<br>Best in Class</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-year">2021</div><div class="award-name">WSJ Top 50<br>Real Estate Teams</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-year">2020</div><div class="award-name">Architectural<br>Digest Partner</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-year">2019</div><div class="award-name">Forbes Real<br>Estate Council</div></div>
     </div>
   </section>
 </div>
@@ -1055,7 +1576,9 @@ function updateNav(pageId){
   document.querySelectorAll('.page-pip').forEach((pip,i)=>{
     pip.classList.toggle('active', PAGES[i]===pageId);
   });
-  // Adjust nav scrolled state
+  document.querySelectorAll('.drawer-link[data-drawer]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.drawer===pageId);
+  });
   const activeEl=document.getElementById(pageId);
   if(activeEl) activeEl.addEventListener('scroll',onPageScroll,{passive:true});
 }
@@ -1074,6 +1597,20 @@ PAGES.forEach(id=>{
     document.getElementById('navbar').classList.toggle('scrolled',el.scrollTop>60);
   },{passive:true});
 });
+
+// ═══════════════════════════════════════════════
+// MOBILE DRAWER
+// ═══════════════════════════════════════════════
+function toggleDrawer(){
+  const drawer = document.getElementById('mobile-drawer');
+  const burger = document.getElementById('hamburger');
+  drawer.classList.toggle('open');
+  burger.classList.toggle('open');
+}
+function drawerNav(pageId){
+  toggleDrawer();
+  setTimeout(()=>navigate(pageId), 300);
+}
 
 // ═══════════════════════════════════════════════
 // HERO SLIDESHOW
